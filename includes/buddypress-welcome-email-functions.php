@@ -42,7 +42,7 @@ function bp_email_locate_template($template_name, $template_path = '', $default_
 } // END bp_email_locate_template()
 
 /**
- * Get other templates (e.g. product attributes) passing attributes and including the file.
+ * Get other templates passing attributes and including the file.
  *
  * @since  1.0.0
  * @access public

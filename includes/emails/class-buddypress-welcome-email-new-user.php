@@ -1,10 +1,10 @@
 <?php
 /**
- * New User Account
+ * New User
  *
  * An email sent to the user when they create an account.
  *
- * @class       BP_Email_New_Account
+ * @class       BP_Email_New_User
  * @version     1.0.0
  * @package     BuddyPress Welcome Email/Classes/Emails
  * @author      Sébastien Dumont
@@ -14,9 +14,9 @@ if ( ! defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
-if ( ! class_exists('BP_Email_New_Account')) {
+if ( ! class_exists('BP_Email_New_User')) {
 
-  class BP_Email_New_Account extends BP_Email {
+  class BP_Email_New_User extends BP_Email {
 
     public $user_name;
 
@@ -32,7 +32,7 @@ if ( ! class_exists('BP_Email_New_Account')) {
     public function __construct() {
       $this->id = 'new_user_account';
       $this->title = __('New user account', 'buddypress-welcome-email');
-      $this->description = __('New account emails are sent to the user when they sign up via the BuddyPress registration pages.', 'buddypress-welcome-email');
+      $this->description = __('New user account emails are sent to the user when they sign up via the BuddyPress registration page.', 'buddypress-welcome-email');
 
       $this->template_html  = 'new-user-account.php';
       $this->template_plain = 'plain/new-user-account.php';
@@ -47,10 +47,10 @@ if ( ! class_exists('BP_Email_New_Account')) {
     /**
      * Trigger.
      *
-     * This passes through the user id and password 
+     * This passes through the user id and password
      * the user entered when registering.
-     * The user id is checked that it exists before 
-     * fetching additional user data to attach to the 
+     * The user id is checked that it exists before
+     * fetching additional user data to attach to the
      * email before being sent.
      */
     public function trigger($user_id, $user_password) {
@@ -58,7 +58,7 @@ if ( ! class_exists('BP_Email_New_Account')) {
         $this->object     = new WP_User($user_id);
 
         $this->user_pass  = $user_password;
-        $this->user_name  = stripslashes($this->object->user_name);
+        $this->user_name  = stripslashes($this->object->display_name);
         $this->user_login = stripslashes($this->object->user_login);
         $this->user_email = stripslashes($this->object->user_email);
         $this->recipient  = $this->user_email;
@@ -112,8 +112,8 @@ if ( ! class_exists('BP_Email_New_Account')) {
       return ob_get_clean();
     } // END get_content_plain()
 
-  } // END class BP_Email_New_Account()
+  } // END class BP_Email_New_User()
 
 } // END if class exists
 
-return new BP_Email_New_Account();
+return new BP_Email_New_User();

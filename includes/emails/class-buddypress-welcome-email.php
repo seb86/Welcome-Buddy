@@ -425,7 +425,7 @@ class BP_Email extends BP_Emails {
 	 * @return string
 	 */
 	public function get_from_address() {
-		return sanitize_email(add_filters('buddypress_email_from_address', $this->get_admin_email()));
+		return sanitize_email(apply_filters('buddypress_email_from_address', $this->get_admin_email()));
 	} // END get_from_address()
 
 	/**
@@ -451,12 +451,12 @@ class BP_Email extends BP_Emails {
 	 * @param  string $attachments
 	 * @return bool
 	 */
-	public static function send($to, $subject, $message, $headers, $attachments) {
+	public function send($to, $subject, $message, $headers = "Content-Type: text/html\r\n", $attachments = "") {
 		add_filter('wp_mail_from', array($this, 'get_from_address'));
 		add_filter('wp_mail_from_name', array($this, 'get_from_name'));
 		add_filter('wp_mail_content_type', array($this, 'get_content_type'));
 
-		$message = apply_filters('buddypress_welcome_email_content', self::style_inline($message));
+		$message = apply_filters('buddypress_welcome_email_content', $this->style_inline($message));
 		$return  = wp_mail($to, $subject, $message, $headers, $attachments);
 
 		remove_filter('wp_mail_from', array($this, 'get_from_address'));

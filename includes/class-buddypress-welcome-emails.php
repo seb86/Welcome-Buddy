@@ -20,9 +20,6 @@ if (class_exists('BP_Emails')) {
 
 class BP_Emails {
 
-	/** @var array Array of email notification classes */
-	public $emails;
-
 	/** @var BP_Emails The single instance of the class */
 	protected static $_instance = null;
 
@@ -32,12 +29,12 @@ class BP_Emails {
 	 * Ensures only one instance of BP_Emails is loaded or can be loaded.
 	 *
 	 * @since  1.0.0
-	 * @access public static
+	 * @access public
 	 * @return BP_Emails Main instance
 	 */
 	public static function instance() {
 		if (is_null(self::$_instance)) {
-			self::$_instance = new self();
+			self::$_instance = new BP_Emails;
 		}
 		return self::$_instance;
 	} // END instance()
@@ -82,6 +79,9 @@ class BP_Emails {
 
 		// Hooks for sending emails during events
 		add_action('bp_core_signup_user_notification', array($this, 'buddypress_new_user'), 10, 3);
+
+		// Let 3rd parties unhook the above via this hook
+		do_action('buddypress_email', $this);
 	} // END __construct()
 
 	/**
@@ -93,11 +93,6 @@ class BP_Emails {
 	public function init() {
 		// Include email classes
 		include_once('emails/class-buddypress-welcome-email.php');
-		$email = new BP_Email();
-
-		$this->emails['BP_Email_New_User'] = include('emails/class-buddypress-welcome-email-new-user.php');
-
-		//$this->emails = $this->emails;
 
 		// Include CSS inliner
 		if ( ! class_exists('Emogrifier') && class_exists('DOMDocument')) {
@@ -196,10 +191,11 @@ class BP_Emails {
 	 * @param  string $attachments (default: "")
 	 * @return bool
 	 */
-	/*public function send($to, $subject, $message, $headers = "Content-Type: text/html\r\n", $attachments = "") {
+	public function send($to, $subject, $message, $headers = "Content-Type: text/html\r\n", $attachments = "") {
 		// Send
+		$email = new BP_Email();
 		return $email->send($to, $subject, $message, $headers, $attachments);
-	} // END send()*/
+	} // END send()
 
 	/**
 	 * New account welcome email.
@@ -219,7 +215,9 @@ class BP_Emails {
 			return;
 		}
 
-		$email = $this->emails['BP_Email_New_User'];
+		include('emails/class-buddypress-welcome-email-new-user.php');
+
+		$email = new BP_Email_New_User();
 		$email->trigger($user_id, $user_password);
 	} // END buddypress_new_user()
 
