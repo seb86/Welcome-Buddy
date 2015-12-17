@@ -6,7 +6,7 @@
  * @class       BP_Welcome_Email
  * @version     1.0.0
  * @package     BuddyPress Welcome Email/Classes/Emails
- * @author      Sébastien Dumont
+ * @author      SÃ©bastien Dumont
  * @extends     BP_Email
  */
 if ( ! defined('ABSPATH')) {
@@ -194,8 +194,8 @@ class BP_Email extends BP_Emails {
 		'--',                                           // mdash
 		'-',                                            // ndash
 		'*',                                            // Bullet
-		'£',                                            // Pound sign
-		'EUR',                                          // Euro sign. € ?
+		'ï¿½',                                            // Pound sign
+		'EUR',                                          // Euro sign. ï¿½ ?
 		'$',                                            // Dollar sign
 		'',                                             // Unknown/unhandled entities
 		' '                                             // Runs of spaces, post-handling

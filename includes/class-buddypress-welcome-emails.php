@@ -1,13 +1,13 @@
 <?php
 /**
- * BuddyPress Welcome Email Class which handles the 
+ * BuddyPress Welcome Email Class which handles the
  * sending on emails and email templates.
  *
  * @class    BP_Emails
  * @version  1.0.0
  * @package  BuddyPress Welcome Email/Classes/Emails
  * @category Class
- * @author   Sébastien Dumont
+ * @author   SÃ©bastien Dumont
  */
 
 if ( ! defined('ABSPATH')) {
@@ -53,7 +53,7 @@ class BP_Emails {
 	} // END init_emails()
 
 	/**
-	 * Init the mailer instance and call the notifications 
+	 * Init the mailer instance and call the notifications
 	 * for the current filter.
 	 *
 	 * @since  1.0.0
@@ -67,7 +67,7 @@ class BP_Emails {
 	} // END send_email()
 
 	/**
-	 * Constructor for the email class hooks in all 
+	 * Constructor for the email class hooks in all
 	 * emails that can be sent.
 	 *
 	 * @since  1.0.0

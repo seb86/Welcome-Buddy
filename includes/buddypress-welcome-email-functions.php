@@ -64,7 +64,7 @@ function bp_email_get_template($template_name, $args = array(), $template_path =
 	}
 
 	// Allow 3rd party plugin filter template file from their plugin
-	$located = apply_filters('bp_email_get_template', $located, $template_name, $args, $template_path, $default_path);
+	$located = apply_filters('buddypress_email_get_template', $located, $template_name, $args, $template_path, $default_path);
 
 	do_action('buddypress_email_before_template_part', $template_name, $template_path, $located, $args);
 

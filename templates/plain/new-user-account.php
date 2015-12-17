@@ -2,7 +2,7 @@
 /**
  * Welcome email for new registered users.
  *
- * @author  Sébastien Dumont
+ * @author  SÃ©bastien Dumont
  * @package BuddyPress Welcome Email/Templates/Plain
  * @version 1.0.0
  */
