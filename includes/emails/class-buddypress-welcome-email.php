@@ -312,7 +312,7 @@ class BP_Email extends BP_Emails {
 	 * @return string
 	 */
 	public function get_content_type() {
-		switch (self::get_email_type()) {
+		switch ($this->get_email_type()) {
 			case 'html' :
 				return 'text/html';
 			case 'multipart' :
@@ -356,7 +356,7 @@ class BP_Email extends BP_Emails {
 	public function get_content() {
 		$this->sending = true;
 
-		if (self::get_email_type() == 'plain') {
+		if ($this->get_email_type() == 'plain') {
 			$email_content = preg_replace($this->plain_search, $this->plain_replace, strip_tags($this->get_content_plain()));
 		} else {
 			$email_content = $this->get_content_html();
@@ -373,7 +373,7 @@ class BP_Email extends BP_Emails {
 	 */
 	public function style_inline($content) {
 		// Make sure we only inline CSS for HTML emails.
-		if (in_array(self::get_content_type(), array('text/html', 'multipart/alternative')) && class_exists('DOMDocument')) {
+		if (in_array($this->get_content_type(), array('text/html', 'multipart/alternative')) && class_exists('DOMDocument')) {
 
 			// Get CSS styles
 			ob_start();
@@ -414,7 +414,7 @@ class BP_Email extends BP_Emails {
 	 * @return string
 	 */
 	public function get_from_name() {
-		return wp_specialchars_decode(esc_html(apply_filters('buddypress_email_from_name', self::get_blogname())), ENT_QUOTES);
+		return wp_specialchars_decode(esc_html(apply_filters('buddypress_email_from_name', $this->get_blogname())), ENT_QUOTES);
 	} // END get_from_name()
 
 	/**
@@ -424,8 +424,8 @@ class BP_Email extends BP_Emails {
 	 * @access public
 	 * @return string
 	 */
-	public static function get_from_address() {
-		return sanitize_email(apply_filters('buddypress_email_from_address', self::get_admin_email()));
+	public function get_from_address() {
+		return sanitize_email(apply_filters('buddypress_email_from_address', $this->get_admin_email()));
 	} // END get_from_address()
 
 	/**
@@ -451,12 +451,12 @@ class BP_Email extends BP_Emails {
 	 * @param  string $attachments
 	 * @return bool
 	 */
-	public static function send($to, $subject, $message, $headers, $attachments) {
-		add_filter('wp_mail_from', self::get_from_address());
-		add_filter('wp_mail_from_name', self::get_from_name());
-		add_filter('wp_mail_content_type', self::get_content_type());
+	public function send($to, $subject, $message, $headers, $attachments) {
+		add_filter('wp_mail_from', array($this, 'get_from_address'));
+		add_filter('wp_mail_from_name', array($this, 'get_from_name'));
+		add_filter('wp_mail_content_type', array($this, 'get_content_type'));
 
-		$message = apply_filters('buddypress_welcome_email_content', self::style_inline($message));
+		$message = apply_filters('buddypress_welcome_email_content', $this->style_inline($message));
 		$return  = wp_mail($to, $subject, $message, $headers, $attachments);
 
 		remove_filter('wp_mail_from', array($this, 'get_from_address'));

@@ -73,7 +73,7 @@ final class BuddyPress_Welcome_Email {
 			self::$_instance->setup_constants();
 			self::$_instance->includes();
 			self::$_instance->load_plugin_textdomain();
-			self::$_instance->init_hooks();
+			//self::$_instance->init_hooks();
 		}
 		return self::$_instance;
 	} // END instance()
@@ -150,7 +150,7 @@ final class BuddyPress_Welcome_Email {
 	 * @access private
 	 */
 	private function init_hooks() {
-		add_action('init', array('BP_Emails', 'init_emails'));
+		//add_action('init', array('BP_Emails', 'init_emails'));
 	} // END init_hooks()
 
 	/**
@@ -245,7 +245,7 @@ final class BuddyPress_Welcome_Email {
 	 * @access public
 	 * @return BP_Emails
 	 */
-	public static function mailer() {
+	public function mailer() {
 		return BP_Emails::instance();
 	} // END mailer()
 

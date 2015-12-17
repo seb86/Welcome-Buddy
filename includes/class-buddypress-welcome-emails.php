@@ -21,7 +21,7 @@ if (class_exists('BP_Emails')) {
 class BP_Emails {
 
 	/** @var BP_Emails The single instance of the class */
-	protected static $_instance = null;
+	//protected $_instance = null;
 
 	/**
 	 * Main BP_Emails Instance
@@ -29,15 +29,15 @@ class BP_Emails {
 	 * Ensures only one instance of BP_Emails is loaded or can be loaded.
 	 *
 	 * @since  1.0.0
-	 * @access public static
+	 * @access public
 	 * @return BP_Emails Main instance
 	 */
-	public static function instance() {
+	/*public function instance() {
 		if (is_null(self::$_instance)) {
-			self::$_instance = new self();
+			self::$_instance = new BP_Emails;
 		}
 		return self::$_instance;
-	} // END instance()
+	} // END instance()*/
 
 	/**
 	 * Initiate the email
@@ -46,7 +46,7 @@ class BP_Emails {
 	 * @access public
 	 */
 	public static function init_emails() {
-		add_action('bp_core_signup_user', array(__CLASS__, 'send_email'), 10, 10);
+		add_action('bp_core_signup_user', array($this, 'send_email'), 10, 10);
 	} // END init_emails()
 
 	/**
@@ -57,8 +57,8 @@ class BP_Emails {
 	 * @access public
 	 * @internal param array $args (default: array())
 	 */
-	public static function send_email() {
-		self::instance();
+	public function send_email() {
+		//self::instance();
 		$args = func_get_args();
 		do_action_ref_array(current_filter().'_notification', $args);
 	} // END send_email()
@@ -79,6 +79,9 @@ class BP_Emails {
 
 		// Hooks for sending emails during events
 		add_action('bp_core_signup_user_notification', array($this, 'buddypress_new_user'), 10, 3);
+
+		// Let 3rd parties unhook the above via this hook
+		do_action('buddypress_email', $this);
 	} // END __construct()
 
 	/**
@@ -126,7 +129,7 @@ class BP_Emails {
 	 * @access public
 	 * @return string
 	 */
-	public static function get_from_address() {
+	public function get_from_address() {
 		return get_option('admin_email');
 	} // END get_from_address()
 
@@ -188,10 +191,11 @@ class BP_Emails {
 	 * @param  string $attachments (default: "")
 	 * @return bool
 	 */
-	/*public function send($to, $subject, $message, $headers = "Content-Type: text/html\r\n", $attachments = "") {
+	public function send($to, $subject, $message, $headers = "Content-Type: text/html\r\n", $attachments = "") {
 		// Send
+		$email = new BP_Email();
 		return $email->send($to, $subject, $message, $headers, $attachments);
-	} // END send()*/
+	} // END send()
 
 	/**
 	 * New account welcome email.
