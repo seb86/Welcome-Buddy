@@ -166,7 +166,7 @@ final class BuddyPress_Welcome_Email {
 
 		$this->define('BP_WELCOME_EMAIL_URL_PATH', untrailingslashit(plugins_url('/', __FILE__)));
 		$this->define('BP_WELCOME_EMAIL_FILE_PATH', untrailingslashit(plugin_dir_path(__FILE__)));
-		$this->define('BP_WELCOME_EMAIL_TEMPLATE_PATH', apply_filters('buddypress_email_template_path', 'buddypress_emails/'));
+		$this->define('BP_WELCOME_EMAIL_TEMPLATE_PATH', apply_filters('buddypress_email_template_path', 'buddypress-emails/'));
 
 		$this->define('BP_WELCOME_EMAIL_WP_VERSION_REQUIRE', '4.0');
 	} // END setup_constants()
