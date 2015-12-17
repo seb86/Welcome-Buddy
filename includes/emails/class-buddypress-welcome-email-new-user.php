@@ -24,7 +24,7 @@ if ( ! class_exists('BP_Email_New_Account')) {
 
     public $user_email;
 
-    public $user_password;
+    public $user_pass;
 
     /**
      * Constructor
