@@ -1,11 +1,11 @@
 <?php
 /**
- * WordPress Update PHP Class
- *
- * @package   WP_Update_Php
- * @author    Coen Jacobs, Sébastien Dumont
- * @license   GPL-2.0+
- */
+			 * WordPress Update PHP Class
+			 *
+			 * @package   WP_Update_Php
+			 * @author    Coen Jacobs, Sébastien Dumont
+			 * @license   GPL-2.0+
+			 */
 
 class WP_Update_Php {
 	/**
@@ -46,25 +46,25 @@ class WP_Update_Php {
 	 * @param  array $requirements Minimum and Recommended version of PHP.
 	 */
 	public function __construct($plugin = array(), $requirements = array()) {
-		if ( is_array($plugin) && !empty($plugin['name']) ) {
+		if (is_array($plugin) && ! empty($plugin['name'])) {
 			$this->plugin_name = $plugin['name'];
 		} else {
 			$this->plugin_name = '';
 		}
 
-		if ( is_array($plugin) && !empty($plugin['textdomain']) ) {
+		if (is_array($plugin) && ! empty($plugin['textdomain'])) {
 			$this->textdomain = $plugin['textdomain'];
 		} else {
 			$this->textdomain = 'wpupdatephp';
 		}
 
-		if ( is_array($requirements) && !empty($requirements['recommended_version']) ) {
+		if (is_array($requirements) && ! empty($requirements['recommended_version'])) {
 			$this->minimum_version = $requirements['minimum_version'];
 		} else {
 			$this->minimum_version = '5.3.0';
 		}
 
-		if ( is_array($requirements) && !empty($requirements['recommended_version']) ) {
+		if (is_array($requirements) && ! empty($requirements['recommended_version'])) {
 			$this->recommended_version = $requirements['recommended_version'];
 		} else {
 			$this->recommended_version = null;
@@ -126,7 +126,7 @@ class WP_Update_Php {
 	 * @param  callable $callback Callable that displays admin notice.
 	 */
 	private function load_version_notice($callback) {
-		if ( is_admin() && ! defined('DOING_AJAX')) {
+		if (is_admin() && ! defined('DOING_AJAX')) {
 			add_action('admin_notices', $callback);
 			add_action('network_admin_notices', $callback);
 		}
