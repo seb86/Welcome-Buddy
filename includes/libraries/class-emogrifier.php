@@ -1,13 +1,13 @@
 <?php
 /**
- * This class provides functions for converting CSS styles into inline style attributes in your HTML code.
- *
- * For more information, please see the README.md file.
- *
- * @author Cameron Brooks
- * @author Jaime Prado
- * @author Roman Ožana <ozana@omdesign.cz>
- */
+	 * This class provides functions for converting CSS styles into inline style attributes in your HTML code.
+	 *
+	 * For more information, please see the README.md file.
+	 *
+	 * @author Cameron Brooks
+	 * @author Jaime Prado
+	 * @author Roman Ožana <ozana@omdesign.cz>
+	 */
 class Emogrifier {
 	/**
 	 * @var string
@@ -170,8 +170,8 @@ class Emogrifier {
 	 */
 	private function clearCache($key) {
 		$allowedCacheKeys = array(self::CACHE_KEY_CSS, self::CACHE_KEY_SELECTOR, self::CACHE_KEY_XPATH, self::CACHE_KEY_CSS_DECLARATION_BLOCK);
-		if (!in_array($key, $allowedCacheKeys, true)) {
-			throw new InvalidArgumentException('Invalid cache key: ' . $key, 1391822035);
+		if ( ! in_array($key, $allowedCacheKeys, true)) {
+			throw new InvalidArgumentException('Invalid cache key: '.$key, 1391822035);
 		}
 
 		$this->caches[$key] = array();
@@ -238,11 +238,11 @@ class Emogrifier {
 		if ($nodesWithStyleAttributes !== false) {
 			/** @var $nodeWithStyleAttribute DOMNode */
 			foreach ($nodesWithStyleAttributes as $node) {
-				$normalizedOriginalStyle = preg_replace_callback( '/[A-z\\-]+(?=\\:)/S', array( $this, 'strtolower' ), $node->getAttribute('style') );
+				$normalizedOriginalStyle = preg_replace_callback('/[A-z\\-]+(?=\\:)/S', array($this, 'strtolower'), $node->getAttribute('style'));
 
 				// in order to not overwrite existing style attributes in the HTML, we have to save the original HTML styles
 				$nodePath = $node->getNodePath();
-				if (!isset($this->styleAttributesForNodes[$nodePath])) {
+				if ( ! isset($this->styleAttributesForNodes[$nodePath])) {
 					$this->styleAttributesForNodes[$nodePath] = $this->parseCssDeclarationBlock($normalizedOriginalStyle);
 					$this->visitedNodes[$nodePath] = $node;
 				}
@@ -261,14 +261,14 @@ class Emogrifier {
 		self::$_media = ''; // reset
 
 		$cssKey = md5($cssParts['css']);
-		if (!isset($this->caches[self::CACHE_KEY_CSS][$cssKey])) {
+		if ( ! isset($this->caches[self::CACHE_KEY_CSS][$cssKey])) {
 			// process the CSS file for selectors and definitions
 			preg_match_all('/(?:^|[\\s^{}]*)([^{]+){([^}]*)}/mis', $cssParts['css'], $matches, PREG_SET_ORDER);
 
 			$allSelectors = array();
 			foreach ($matches as $key => $selectorString) {
 				// if there is a blank definition, skip
-				if (!strlen(trim($selectorString[2]))) {
+				if ( ! strlen(trim($selectorString[2]))) {
 					continue;
 				}
 
@@ -276,7 +276,7 @@ class Emogrifier {
 				$selectors = explode(',', $selectorString[1]);
 				foreach ($selectors as $selector) {
 					// don't process pseudo-elements and behavioral (dynamic) pseudo-classes; ONLY allow structural pseudo-classes
-					if (strpos($selector, ':') !== false && !preg_match('/:\\S+\\-(child|type)\\(/i', $selector)) {
+					if (strpos($selector, ':') !== false && ! preg_match('/:\\S+\\-(child|type)\\(/i', $selector)) {
 						continue;
 					}
 
@@ -289,7 +289,7 @@ class Emogrifier {
 			}
 
 			// now sort the selectors by precedence
-			usort($allSelectors, array($this,'sortBySelectorPrecedence'));
+			usort($allSelectors, array($this, 'sortBySelectorPrecedence'));
 
 			$this->caches[self::CACHE_KEY_CSS][$cssKey] = $allSelectors;
 		}
@@ -329,7 +329,7 @@ class Emogrifier {
 		if ($nodesWithStyleDisplayNone->length > 0) {
 			/** @var $node \DOMNode */
 			foreach ($nodesWithStyleDisplayNone as $node) {
-				if ($node->parentNode && is_callable(array($node->parentNode,'removeChild'))) {
+				if ($node->parentNode && is_callable(array($node->parentNode, 'removeChild'))) {
 					$node->parentNode->removeChild($node);
 				}
 			}
@@ -338,10 +338,10 @@ class Emogrifier {
 		$this->copyCssWithMediaToStyleNode($cssParts, $xmlDocument);
 
 		if ($this->preserveEncoding) {
-			if ( function_exists( 'mb_convert_encoding' ) ) {
-				return mb_convert_encoding( $xmlDocument->saveHTML(), self::ENCODING, 'HTML-ENTITIES' );
+			if (function_exists('mb_convert_encoding')) {
+				return mb_convert_encoding($xmlDocument->saveHTML(), self::ENCODING, 'HTML-ENTITIES');
 			} else {
-				return htmlspecialchars_decode( utf8_encode( html_entity_decode( $xmlDocument->saveHTML(), ENT_COMPAT, self::ENCODING ) ) );
+				return htmlspecialchars_decode(utf8_encode(html_entity_decode($xmlDocument->saveHTML(), ENT_COMPAT, self::ENCODING)));
 			}
 		} else {
 			return $xmlDocument->saveHTML();
@@ -366,7 +366,7 @@ class Emogrifier {
 		$combinedStyles = array_merge($oldStyles, $newStyles);
 		$style = '';
 		foreach ($combinedStyles as $attributeName => $attributeValue) {
-			$style .= (strtolower(trim($attributeName)) . ': ' . trim($attributeValue) . '; ');
+			$style .= (strtolower(trim($attributeName)).': '.trim($attributeValue).'; ');
 		}
 		return trim($style);
 	}
@@ -400,7 +400,7 @@ class Emogrifier {
 		$css = '';
 		/** @var $styleNode DOMNode */
 		foreach ($styleNodes as $styleNode) {
-			$css .= "\n\n" . $styleNode->nodeValue;
+			$css .= "\n\n".$styleNode->nodeValue;
 			$styleNode->parentNode->removeChild($styleNode);
 		}
 
@@ -462,7 +462,7 @@ class Emogrifier {
 	 * @return array
 	 */
 	private function splitCssAndMediaQuery($css) {
-		$css = preg_replace_callback( '#@media\\s+(?:only\\s)?(?:[\\s{\(]|screen|all)\\s?[^{]+{.*}\\s*}\\s*#misU', array( $this, '_media_concat' ), $css );
+		$css = preg_replace_callback('#@media\\s+(?:only\\s)?(?:[\\s{\(]|screen|all)\\s?[^{]+{.*}\\s*}\\s*#misU', array($this, '_media_concat'), $css);
 
 		// filter the CSS
 		$search = array(
@@ -486,7 +486,7 @@ class Emogrifier {
 		return array('css' => $css, 'media' => self::$_media);
 	}
 
-	private function _media_concat( $matches ) {
+	private function _media_concat($matches) {
 		self::$_media .= $matches[0];
 	}
 
@@ -517,17 +517,17 @@ class Emogrifier {
 	 * @throws BadMethodCallException
 	 */
 	private function getUnifiedHtml() {
-		if (!empty($this->unprocessableHtmlTags)) {
+		if ( ! empty($this->unprocessableHtmlTags)) {
 			$unprocessableHtmlTags = implode('|', $this->unprocessableHtmlTags);
-			$bodyWithoutUnprocessableTags = preg_replace('/<\\/?(' . $unprocessableHtmlTags . ')[^>]*>/i', '', $this->html);
+			$bodyWithoutUnprocessableTags = preg_replace('/<\\/?('.$unprocessableHtmlTags.')[^>]*>/i', '', $this->html);
 		} else {
 			$bodyWithoutUnprocessableTags = $this->html;
 		}
 
-		if ( function_exists( 'mb_convert_encoding' ) ) {
-			return mb_convert_encoding( $bodyWithoutUnprocessableTags, 'HTML-ENTITIES', self::ENCODING );
+		if (function_exists('mb_convert_encoding')) {
+			return mb_convert_encoding($bodyWithoutUnprocessableTags, 'HTML-ENTITIES', self::ENCODING);
 		} else {
-			return htmlspecialchars_decode( utf8_decode( htmlentities( $bodyWithoutUnprocessableTags, ENT_COMPAT, self::ENCODING, false ) ) );
+			return htmlspecialchars_decode(utf8_decode(htmlentities($bodyWithoutUnprocessableTags, ENT_COMPAT, self::ENCODING, false)));
 		}
 	}
 
@@ -558,18 +558,18 @@ class Emogrifier {
 	 */
 	private function getCssSelectorPrecedence($selector) {
 		$selectorKey = md5($selector);
-		if (!isset($this->caches[self::CACHE_KEY_SELECTOR][$selectorKey])) {
+		if ( ! isset($this->caches[self::CACHE_KEY_SELECTOR][$selectorKey])) {
 			$precedence = 0;
 			$value = 100;
 			// ids: worth 100, classes: worth 10, elements: worth 1
-			$search = array('\\#','\\.','');
+			$search = array('\\#', '\\.', '');
 
 			foreach ($search as $s) {
 				if (trim($selector == '')) {
 					break;
 				}
 				$number = 0;
-				$selector = preg_replace('/' . $s . '\\w+/', '', $selector, -1, $number);
+				$selector = preg_replace('/'.$s.'\\w+/', '', $selector, -1, $number);
 				$precedence += ($value * $number);
 				$value /= 10;
 			}
@@ -589,11 +589,11 @@ class Emogrifier {
 	 * @return string
 	 */
 	private function translateCssToXpath($paramCssSelector) {
-		$cssSelector = ' ' . $paramCssSelector . ' ';
-		$cssSelector = preg_replace_callback( '/\s+\w+\s+/', array( $this, 'strtolower' ), $cssSelector );
+		$cssSelector = ' '.$paramCssSelector.' ';
+		$cssSelector = preg_replace_callback('/\s+\w+\s+/', array($this, 'strtolower'), $cssSelector);
 		$cssSelector = trim($cssSelector);
 		$xpathKey = md5($cssSelector);
-		if (!isset($this->caches[self::CACHE_KEY_XPATH][$xpathKey])) {
+		if ( ! isset($this->caches[self::CACHE_KEY_XPATH][$xpathKey])) {
 			// returns an Xpath selector
 			$search = array(
 				// Matches any element that is a child of parent.
@@ -624,7 +624,7 @@ class Emogrifier {
 				'\\1[@\\2="\\3"]',
 			);
 
-			$cssSelector = '//' . preg_replace($search, $replace, $cssSelector);
+			$cssSelector = '//'.preg_replace($search, $replace, $cssSelector);
 
 			$cssSelector = preg_replace_callback(self::ID_ATTRIBUTE_MATCHER, array($this, 'matchIdAttributes'), $cssSelector);
 			$cssSelector = preg_replace_callback(self::CLASS_ATTRIBUTE_MATCHER, array($this, 'matchClassAttributes'), $cssSelector);
@@ -651,7 +651,7 @@ class Emogrifier {
 	 * @return string
 	 */
 	private function matchIdAttributes(array $match) {
-		return (strlen($match[1]) ? $match[1] : '*') . '[@id="' . $match[2] . '"]';
+		return (strlen($match[1]) ? $match[1] : '*').'[@id="'.$match[2].'"]';
 	}
 
 	/**
@@ -660,11 +660,11 @@ class Emogrifier {
 	 * @return string
 	 */
 	private function matchClassAttributes(array $match) {
-		return (strlen($match[1]) ? $match[1] : '*') . '[contains(concat(" ",@class," "),concat(" ","' .
+		return (strlen($match[1]) ? $match[1] : '*').'[contains(concat(" ",@class," "),concat(" ","'.
 			implode(
 				'"," "))][contains(concat(" ",@class," "),concat(" ","',
 				explode('.', substr($match[2], 1))
-			) . '"," "))]';
+			).'"," "))]';
 	}
 
 	/**
@@ -713,7 +713,7 @@ class Emogrifier {
 	 * @return array
 	 */
 	private function parseNth(array $match) {
-		if (in_array(strtolower($match[2]), array('even','odd'))) {
+		if (in_array(strtolower($match[2]), array('even', 'odd'))) {
 			$index = strtolower($match[2]) == 'even' ? 0 : 1;
 			return array(self::MULTIPLIER => 2, self::INDEX => $index);
 		} elseif (stripos($match[2], 'n') === false) {
@@ -731,7 +731,7 @@ class Emogrifier {
 
 			$multiplier = str_ireplace('n', '', $multipleTerm);
 
-			if (!strlen($multiplier)) {
+			if ( ! strlen($multiplier)) {
 				$multiplier = 1;
 			} elseif ($multiplier == 0) {
 				return array(self::INDEX => $index);
@@ -774,7 +774,7 @@ class Emogrifier {
 		$declarations = explode(';', $cssDeclarationBlock);
 		foreach ($declarations as $declaration) {
 			$matches = array();
-			if (!preg_match('/ *([A-Za-z\\-]+) *: *([^;]+) */', $declaration, $matches)) {
+			if ( ! preg_match('/ *([A-Za-z\\-]+) *: *([^;]+) */', $declaration, $matches)) {
 				continue;
 			}
 			$propertyName = strtolower($matches[1]);

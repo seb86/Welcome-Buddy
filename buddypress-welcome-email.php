@@ -135,10 +135,10 @@ final class BuddyPress_Welcome_Email {
 		$file  = strtolower('class-'.str_replace('_', '-', $class)).'.php';
 
 		if (strpos($class, 'buddypress_welcome_email_admin') === 0) {
-			$path = $this->include_path . 'admin/';
+			$path = $this->include_path.'admin/';
 		}
 
-		if ( ! empty($path) && is_readable($path.$file) ) {
+		if ( ! empty($path) && is_readable($path.$file)) {
 			include_once($path.$file);
 		}
 	} // END autoload()
@@ -196,7 +196,7 @@ final class BuddyPress_Welcome_Email {
 		include_once('includes/buddypress-welcome-email-functions.php');
 		include_once('includes/class-buddypress-welcome-emails.php');
 
-		if( is_admin() ) {
+		if (is_admin()) {
 			include_once('includes/admin/class-buddypress-welcome-email-admin.php');
 		}
 	} // END includes()

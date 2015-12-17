@@ -16,25 +16,25 @@
  * @return string
  */
 function bp_email_locate_template($template_name, $template_path = '', $default_path = '') {
-	if ( ! $template_path ) {
+	if ( ! $template_path) {
 		$template_path = BP_WELCOME_EMAIL_TEMPLATE_PATH;
 	}
 
-	if ( ! $default_path ) {
-		$default_path = BP_WELCOME_EMAIL_FILE_PATH . '/templates/';
+	if ( ! $default_path) {
+		$default_path = BP_WELCOME_EMAIL_FILE_PATH.'/templates/';
 	}
 
 	// Look within passed path within the theme - this is priority
 	$template = locate_template(
 		array(
-			trailingslashit($template_path) . $template_name,
+			trailingslashit($template_path).$template_name,
 			$template_name
 		)
 	);
 
 	// Get default template
-	if ( ! $template ) {
-		$template = $default_path . $template_name;
+	if ( ! $template) {
+		$template = $default_path.$template_name;
 	}
 
 	// Return what we found
@@ -52,7 +52,7 @@ function bp_email_locate_template($template_name, $template_path = '', $default_
  * @param  string $default_path (default: '')
  */
 function bp_email_get_template($template_name, $args = array(), $template_path = '', $default_path = '') {
-	if ( $args && is_array($args)) {
+	if ($args && is_array($args)) {
 		extract($args);
 	}
 
@@ -83,14 +83,14 @@ if ( ! function_exists('bp_rgb_from_hex')) {
 	 * @return string
 	 */
 	function bp_rgb_from_hex($color) {
-		$color = str_replace( '#', '', $color );
+		$color = str_replace('#', '', $color);
 		// Convert shorthand colors to full format, e.g. "FFF" -> "FFFFFF"
-		$color = preg_replace( '~^(.)(.)(.)$~', '$1$1$2$2$3$3', $color );
+		$color = preg_replace('~^(.)(.)(.)$~', '$1$1$2$2$3$3', $color);
 
 		$rgb      = array();
-		$rgb['R'] = hexdec( $color{0}.$color{1} );
-		$rgb['G'] = hexdec( $color{2}.$color{3} );
-		$rgb['B'] = hexdec( $color{4}.$color{5} );
+		$rgb['R'] = hexdec($color{0}.$color{1} );
+		$rgb['G'] = hexdec($color{2}.$color{3} );
+		$rgb['B'] = hexdec($color{4}.$color{5} );
 
 		return $rgb;
 	} // END bp_rgb_from_hex()
@@ -107,17 +107,17 @@ if ( ! function_exists('bp_hex_darker')) {
 	 * @return string
 	 */
 	function bp_hex_darker($color, $factor = 30) {
-		$base  = bp_rgb_from_hex( $color );
+		$base  = bp_rgb_from_hex($color);
 		$color = '#';
 
-		foreach ( $base as $k => $v ) {
+		foreach ($base as $k => $v) {
 			$amount      = $v / 100;
-			$amount      = round( $amount * $factor );
+			$amount      = round($amount * $factor);
 			$new_decimal = $v - $amount;
 
-			$new_hex_component = dechex( $new_decimal );
-			if ( strlen( $new_hex_component ) < 2 ) {
-				$new_hex_component = "0" . $new_hex_component;
+			$new_hex_component = dechex($new_decimal);
+			if (strlen($new_hex_component) < 2) {
+				$new_hex_component = "0".$new_hex_component;
 			}
 			$color .= $new_hex_component;
 		}
@@ -137,18 +137,18 @@ if ( ! function_exists('bp_hex_lighter')) {
 	 * @return string
 	 */
 	function bp_hex_lighter($color, $factor = 30) {
-		$base  = bp_rgb_from_hex( $color );
+		$base  = bp_rgb_from_hex($color);
 		$color = '#';
 
-		foreach ( $base as $k => $v ) {
+		foreach ($base as $k => $v) {
 			$amount      = 255 - $v;
 			$amount      = $amount / 100;
-			$amount      = round( $amount * $factor );
+			$amount      = round($amount * $factor);
 			$new_decimal = $v + $amount;
 
-			$new_hex_component = dechex( $new_decimal );
-			if ( strlen( $new_hex_component ) < 2 ) {
-				$new_hex_component = "0" . $new_hex_component;
+			$new_hex_component = dechex($new_decimal);
+			if (strlen($new_hex_component) < 2) {
+				$new_hex_component = "0".$new_hex_component;
 			}
 			$color .= $new_hex_component;
 		}
@@ -169,13 +169,13 @@ if ( ! function_exists('bp_light_or_dark')) {
 	 * @return string
 	 */
 	function bp_light_or_dark($color, $dark = '#000000', $light = '#FFFFFF') {
-		$hex = str_replace( '#', '', $color );
+		$hex = str_replace('#', '', $color);
 
-		$c_r = hexdec( substr( $hex, 0, 2 ) );
-		$c_g = hexdec( substr( $hex, 2, 2 ) );
-		$c_b = hexdec( substr( $hex, 4, 2 ) );
+		$c_r = hexdec(substr($hex, 0, 2));
+		$c_g = hexdec(substr($hex, 2, 2));
+		$c_b = hexdec(substr($hex, 4, 2));
 
-		$brightness = ( ( $c_r * 299 ) + ( $c_g * 587 ) + ( $c_b * 114 ) ) / 1000;
+		$brightness = (($c_r * 299) + ($c_g * 587) + ($c_b * 114)) / 1000;
 
 		return $brightness > 155 ? $dark : $light;
 	} // END bp_light_or_dark()
@@ -191,13 +191,13 @@ if ( ! function_exists('bp_format_hex')) {
 	 * @return string
 	 */
 	function bp_format_hex($hex) {
-		$hex = trim( str_replace( '#', '', $hex ) );
+		$hex = trim(str_replace('#', '', $hex));
 
-		if ( strlen( $hex ) == 3 ) {
-			$hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
+		if (strlen($hex) == 3) {
+			$hex = $hex[0].$hex[0].$hex[1].$hex[1].$hex[2].$hex[2];
 		}
 
-		return $hex ? '#' . $hex : null;
+		return $hex ? '#'.$hex : null;
 	} // bp_format_hex()
 }
 

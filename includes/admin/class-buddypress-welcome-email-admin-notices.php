@@ -1,13 +1,13 @@
 <?php
 /**
- * Display notices in the WordPress admin.
- *
- * @since    1.0.0
- * @author   Sébastien Dumont
- * @category Admin
- * @package  BuddyPress Welcome Email
- * @license  GPL-2.0+
- */
+	 * Display notices in the WordPress admin.
+	 *
+	 * @since    1.0.0
+	 * @author   Sébastien Dumont
+	 * @category Admin
+	 * @package  BuddyPress Welcome Email
+	 * @license  GPL-2.0+
+	 */
 
 if ( ! defined('ABSPATH')) {
 	exit;
