@@ -1,6 +1,6 @@
 <?php
 /**
- * BuddyPress Welcome Email Class which is extended by specific email 
+ * BuddyPress Welcome Email Class which is extended by specific email
  * template classes to add emails to BuddyPress.
  *
  * @class       BP_Welcome_Email
@@ -169,7 +169,7 @@ class BP_Email extends BP_Emails {
 		'/&(euro|#8364);/i', // Euro sign
 		'/&#36;/', // Dollar sign
 		'/&[^&\s;]+;/i', // Unknown/unhandled entities
-		'/[ ]{2,}/'                                      // Runs of spaces, post-handling
+		'/[ ]{2,}/' // Runs of spaces, post-handling
 	);
 
 	/**
@@ -194,11 +194,11 @@ class BP_Email extends BP_Emails {
 		'--', // mdash
 		'-', // ndash
 		'*', // Bullet
-		'�', // Pound sign
-		'EUR', // Euro sign. � ?
+		'£', // Pound sign
+		'€', // Euro sign.
 		'$', // Dollar sign
 		'', // Unknown/unhandled entities
-		' '                                             // Runs of spaces, post-handling
+		' ' // Runs of spaces, post-handling
 	);
 
 	/**
