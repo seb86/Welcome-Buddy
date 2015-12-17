@@ -58,7 +58,7 @@ if ( ! class_exists('BP_Email_New_User')) {
         $this->object     = new WP_User($user_id);
 
         $this->user_pass  = $user_password;
-        $this->user_name  = stripslashes($this->object->user_name);
+        $this->user_name  = stripslashes($this->object->display_name);
         $this->user_login = stripslashes($this->object->user_login);
         $this->user_email = stripslashes($this->object->user_email);
         $this->recipient  = $this->user_email;
