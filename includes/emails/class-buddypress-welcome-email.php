@@ -93,6 +93,13 @@ class BP_Email extends BP_Emails {
 	public $subject;
 
 	/**
+	 * Email Type for the email.
+	 *
+	 * @var string
+	 */
+	public $email_type;
+
+	/**
 	 * Object this email is for.
 	 *
 	 * @var object
@@ -449,7 +456,7 @@ class BP_Email extends BP_Emails {
 		add_filter('wp_mail_from_name', array($this, 'get_from_name'));
 		add_filter('wp_mail_content_type', array($this, 'get_content_type'));
 
-		$message = apply_filters('buddypress_welcome_email_content', $this->style_inline($message));
+		$message = apply_filters('buddypress_welcome_email_content', self::style_inline($message));
 		$return  = wp_mail($to, $subject, $message, $headers, $attachments);
 
 		remove_filter('wp_mail_from', array($this, 'get_from_address'));
