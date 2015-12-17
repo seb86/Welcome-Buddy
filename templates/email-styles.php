@@ -7,7 +7,7 @@
  * @version 1.0.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if ( ! defined('ABSPATH')) exit; // Exit if accessed directly
 
 // Load colours
 $bg                 = apply_filters('buddypress_email_background_color', '#eeeeee');

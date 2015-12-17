@@ -14,7 +14,7 @@ if ( ! defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
-if ( class_exists('BP_Emails')) {
+if (class_exists('BP_Emails')) {
 	return;
 }
 
@@ -36,7 +36,7 @@ class BP_Emails {
 	 * @return BP_Emails Main instance
 	 */
 	public static function instance() {
-		if ( is_null(self::$_instance)) {
+		if (is_null(self::$_instance)) {
 			self::$_instance = new self();
 		}
 		return self::$_instance;
@@ -63,7 +63,7 @@ class BP_Emails {
 	public static function send_email() {
 		self::instance();
 		$args = func_get_args();
-		do_action_ref_array(current_filter() . '_notification', $args);
+		do_action_ref_array(current_filter().'_notification', $args);
 	} // END send_email()
 
 	/**
@@ -215,7 +215,7 @@ class BP_Emails {
 			$user_id = bp_loggedin_user_id();
 		}
 
-		if ( ! $user_id ) {
+		if ( ! $user_id) {
 			return;
 		}
 
