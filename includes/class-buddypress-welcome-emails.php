@@ -57,8 +57,8 @@ class BP_Emails {
 	 * @access public
 	 * @internal param array $args (default: array())
 	 */
-	public function send_email() {
-		$this->instance();
+	public static function send_email() {
+		self::instance();
 		$args = func_get_args();
 		do_action_ref_array(current_filter().'_notification', $args);
 	} // END send_email()

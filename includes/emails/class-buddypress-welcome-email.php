@@ -451,7 +451,7 @@ class BP_Email extends BP_Emails {
 	 * @param  string $attachments
 	 * @return bool
 	 */
-	public function send($to, $subject, $message, $headers, $attachments) {
+	public function send($to, $subject, $message, $headers = "Content-Type: text/html\r\n", $attachments = "") {
 		add_filter('wp_mail_from', array($this, 'get_from_address'));
 		add_filter('wp_mail_from_name', array($this, 'get_from_name'));
 		add_filter('wp_mail_content_type', array($this, 'get_content_type'));
