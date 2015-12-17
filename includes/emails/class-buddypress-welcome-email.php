@@ -13,7 +13,7 @@ if ( ! defined('ABSPATH')) {
 	exit;
 }
 
-if ( class_exists('BP_Email')) {
+if (class_exists('BP_Email')) {
 	return;
 }
 
@@ -150,25 +150,25 @@ class BP_Email extends BP_Emails {
 	 *  @see $replace
 	 */
 	public $plain_search = array(
-		"/\r/",                                          // Non-legal carriage return
-		'/&(nbsp|#160);/i',                              // Non-breaking space
+		"/\r/", // Non-legal carriage return
+		'/&(nbsp|#160);/i', // Non-breaking space
 		'/&(quot|rdquo|ldquo|#8220|#8221|#147|#148);/i', // Double quotes
-		'/&(apos|rsquo|lsquo|#8216|#8217);/i',           // Single quotes
-		'/&gt;/i',                                       // Greater-than
-		'/&lt;/i',                                       // Less-than
-		'/&#38;/i',                                      // Ampersand
-		'/&#038;/i',                                     // Ampersand
-		'/&amp;/i',                                      // Ampersand
-		'/&(copy|#169);/i',                              // Copyright
-		'/&(trade|#8482|#153);/i',                       // Trademark
-		'/&(reg|#174);/i',                               // Registered
-		'/&(mdash|#151|#8212);/i',                       // mdash
-		'/&(ndash|minus|#8211|#8722);/i',                // ndash
-		'/&(bull|#149|#8226);/i',                        // Bullet
-		'/&(pound|#163);/i',                             // Pound sign
-		'/&(euro|#8364);/i',                             // Euro sign
-		'/&#36;/',                                       // Dollar sign
-		'/&[^&\s;]+;/i',                                 // Unknown/unhandled entities
+		'/&(apos|rsquo|lsquo|#8216|#8217);/i', // Single quotes
+		'/&gt;/i', // Greater-than
+		'/&lt;/i', // Less-than
+		'/&#38;/i', // Ampersand
+		'/&#038;/i', // Ampersand
+		'/&amp;/i', // Ampersand
+		'/&(copy|#169);/i', // Copyright
+		'/&(trade|#8482|#153);/i', // Trademark
+		'/&(reg|#174);/i', // Registered
+		'/&(mdash|#151|#8212);/i', // mdash
+		'/&(ndash|minus|#8211|#8722);/i', // ndash
+		'/&(bull|#149|#8226);/i', // Bullet
+		'/&(pound|#163);/i', // Pound sign
+		'/&(euro|#8364);/i', // Euro sign
+		'/&#36;/', // Dollar sign
+		'/&[^&\s;]+;/i', // Unknown/unhandled entities
 		'/[ ]{2,}/'                                      // Runs of spaces, post-handling
 	);
 
@@ -179,25 +179,25 @@ class BP_Email extends BP_Emails {
 	 *  @see $search
 	 */
 	public $plain_replace = array(
-		'',                                             // Non-legal carriage return
-		' ',                                            // Non-breaking space
-		'"',                                            // Double quotes
-		"'",                                            // Single quotes
-		'>',                                            // Greater-than
-		'<',                                            // Less-than
-		'&',                                            // Ampersand
-		'&',                                            // Ampersand
-		'&',                                            // Ampersand
-		'(c)',                                          // Copyright
-		'(tm)',                                         // Trademark
-		'(R)',                                          // Registered
-		'--',                                           // mdash
-		'-',                                            // ndash
-		'*',                                            // Bullet
-		'�',                                            // Pound sign
-		'EUR',                                          // Euro sign. � ?
-		'$',                                            // Dollar sign
-		'',                                             // Unknown/unhandled entities
+		'', // Non-legal carriage return
+		' ', // Non-breaking space
+		'"', // Double quotes
+		"'", // Single quotes
+		'>', // Greater-than
+		'<', // Less-than
+		'&', // Ampersand
+		'&', // Ampersand
+		'&', // Ampersand
+		'(c)', // Copyright
+		'(tm)', // Trademark
+		'(R)', // Registered
+		'--', // mdash
+		'-', // ndash
+		'*', // Bullet
+		'�', // Pound sign
+		'EUR', // Euro sign. � ?
+		'$', // Dollar sign
+		'', // Unknown/unhandled entities
 		' '                                             // Runs of spaces, post-handling
 	);
 
@@ -210,7 +210,7 @@ class BP_Email extends BP_Emails {
 	public function __construct() {
 		// Default template base if not declared in child constructor
 		if (is_null($this->template_base)) {
-			$this->template_base = BP_WELCOME_EMAIL_FILE_PATH . '/templates/';
+			$this->template_base = BP_WELCOME_EMAIL_FILE_PATH.'/templates/';
 		}
 
 		// Settings
@@ -246,7 +246,7 @@ class BP_Email extends BP_Emails {
 	 * @return string
 	 */
 	public function get_subject() {
-		return apply_filters('buddypress_email_subject_' . $this->id, $this->format_string($this->subject), $this->object);
+		return apply_filters('buddypress_email_subject_'.$this->id, $this->format_string($this->subject), $this->object);
 	} // END get_subject()
 
 	/**
@@ -257,7 +257,7 @@ class BP_Email extends BP_Emails {
 	 * @return string
 	 */
 	public function get_heading() {
-		return apply_filters('buddypress_email_heading_' . $this->id, $this->format_string($this->heading), $this->object);
+		return apply_filters('buddypress_email_heading_'.$this->id, $this->format_string($this->heading), $this->object);
 	} // END get_heading()
 
 	/**
@@ -268,7 +268,7 @@ class BP_Email extends BP_Emails {
 	 * @return string
 	 */
 	public function get_recipient() {
-		return apply_filters('buddypress_email_recipient_' . $this->id, $this->recipient, $this->object);
+		return apply_filters('buddypress_email_recipient_'.$this->id, $this->recipient, $this->object);
 	} // END get_recipient()
 
 	/**
@@ -279,7 +279,7 @@ class BP_Email extends BP_Emails {
 	 * @return string
 	 */
 	public function get_headers() {
-		return apply_filters('buddypress_email_headers', "Content-Type: " . $this->get_content_type() . "\r\n", $this->id, $this->object);
+		return apply_filters('buddypress_email_headers', "Content-Type: ".$this->get_content_type()."\r\n", $this->id, $this->object);
 	} // END get_headers()
 
 	/**
@@ -332,7 +332,7 @@ class BP_Email extends BP_Emails {
 	public function is_enabled() {
 		$enabled = $this->enabled == 'yes' ? true : false;
 
-		return apply_filters('buddypress_email_enabled_' . $this->id, $enabled, $this->object);
+		return apply_filters('buddypress_email_enabled_'.$this->id, $enabled, $this->object);
 	} // END is_enabled()
 
 	/**

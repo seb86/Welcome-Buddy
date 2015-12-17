@@ -54,7 +54,7 @@ if ( ! class_exists('BP_Email_New_Account')) {
      * email before being sent.
      */
     public function trigger($user_id, $user_password) {
-      if ( $user_id ) {
+      if ($user_id) {
         $this->object     = new WP_User($user_id);
 
         $this->user_pass  = $user_password;
@@ -64,7 +64,7 @@ if ( ! class_exists('BP_Email_New_Account')) {
         $this->recipient  = $this->user_email;
       }
 
-      if ( ! $this->is_enabled() || ! $this->get_recipient() ) {
+      if ( ! $this->is_enabled() || ! $this->get_recipient()) {
         return;
       }
 
@@ -88,7 +88,7 @@ if ( ! class_exists('BP_Email_New_Account')) {
         'blogname'      => $this->get_blogname(),
         'sent_to_admin' => false,
         'plain_text'    => false
-      ) );
+      ));
       return ob_get_clean();
     } // END get_content_html()
 
@@ -108,7 +108,7 @@ if ( ! class_exists('BP_Email_New_Account')) {
         'blogname'      => $this->get_blogname(),
         'sent_to_admin' => false,
         'plain_text'    => true
-      ) );
+      ));
       return ob_get_clean();
     } // END get_content_plain()
 

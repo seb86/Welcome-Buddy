@@ -52,7 +52,7 @@ function bp_email_locate_template($template_name, $template_path = '', $default_
  * @param  string $default_path (default: '')
  */
 function bp_email_get_template($template_name, $args = array(), $template_path = '', $default_path = '') {
-	if (! empty($args) && is_array($args)) {
+	if ( ! empty($args) && is_array($args)) {
 		extract($args);
 	}
 
