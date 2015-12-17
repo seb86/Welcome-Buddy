@@ -10,11 +10,18 @@
 if ( ! defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
+?>
 
-do_action('buddypress_email_header', $email_heading);
+<?php do_action('buddypress_email_header', $email_heading); ?>
 
-echo apply_filters('buddypress_welcome_email_text', '<p>'.sprintf(__("Welcome to %s. We thank you for joining the site.<br><br>Your username is <strong>%s</strong>.<br>Your password is <strong>%s</strong>.", 'buddypress-welcome-email'), esc_html($blogname), esc_html($user_login), esc_html($user_pass))).'</p>';
+<p><?php printf(__("Welcome to %s. We thank you for joining the site.", 'buddypress-welcome-email'), esc_html($blogname)); ?></p>
 
-echo apply_filters('buddypress_welcome_email_footer_text', '<p>'.__('Regards,', 'buddypress-welcome-email')."</p>\n<p>".$blogname."</p>\n");
+<p><?php printf(__("Your username is <strong>%s</strong>.", 'buddypress-welcome-email'), esc_html($user_login)) ?></p>
 
-do_action('buddypress_email_footer');
+<p><?php printf(__("Your password is <strong>%s</strong>.", 'buddypress-welcome-email'), esc_html($user_pass)); ?></p>
+
+<p><?php _e('Regards,', 'buddypress-welcome-email'); ?></p>
+
+<p><?php echo $blogname; ?><br><?php echo '<a href="'.get_bloginfo('url').'">'.get_bloginfo('url').'</a>'; ?></p>
+
+<?php do_action('buddypress_email_footer'); ?>
