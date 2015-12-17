@@ -20,9 +20,6 @@ if (class_exists('BP_Emails')) {
 
 class BP_Emails {
 
-	/** @var array Array of email notification classes */
-	public $emails;
-
 	/** @var BP_Emails The single instance of the class */
 	protected static $_instance = null;
 
@@ -93,11 +90,6 @@ class BP_Emails {
 	public function init() {
 		// Include email classes
 		include_once('emails/class-buddypress-welcome-email.php');
-		$email = new BP_Email();
-
-		$this->emails['BP_Email_New_User'] = include('emails/class-buddypress-welcome-email-new-user.php');
-
-		//$this->emails = $this->emails;
 
 		// Include CSS inliner
 		if ( ! class_exists('Emogrifier') && class_exists('DOMDocument')) {
@@ -134,7 +126,7 @@ class BP_Emails {
 	 * @access public
 	 * @return string
 	 */
-	public function get_from_address() {
+	public static function get_from_address() {
 		return get_option('admin_email');
 	} // END get_from_address()
 
@@ -219,7 +211,9 @@ class BP_Emails {
 			return;
 		}
 
-		$email = $this->emails['BP_Email_New_User'];
+		include('emails/class-buddypress-welcome-email-new-user.php');
+
+		$email = new BP_Email_New_User();
 		$email->trigger($user_id, $user_password);
 	} // END buddypress_new_user()
 
