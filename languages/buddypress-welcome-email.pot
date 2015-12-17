@@ -1,0 +1,118 @@
+# Auto Load Next Post Copyright (c) {2014}
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: BuddyPress Welcome Email 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/seb86/WordPress-Plugin-Boilerplate/"
+"issues\n"
+"POT-Creation-Date: 2015-12-15 19:41+0100\n"
+"PO-Revision-Date: 2015-05-20 17:15+0100\n"
+"Last-Translator: Auto Load Next Post <mailme@sebastiendumont.com>\n"
+"Language-Team: WP-Translations <wpt@wp-translations.org>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.6\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;"
+"_n_noop:1,2;_c;_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2\n"
+"X-Textdomain-Support: yes\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: buddypress-welcome-email.php:93 buddypress-welcome-email.php:105
+msgid "Cheatin’ huh?"
+msgstr ""
+
+#: includes/admin/class-buddypress-welcome-email-admin.php:55
+msgid "Preview Email"
+msgstr ""
+
+#: includes/admin/views/html-notice-please-review.php:14
+#, php-format
+msgid ""
+"Hi <b>%s</b>, you've been using <b>%s</b> for some time now, and I hope "
+"you're happy with it. I would really appreciate it if you gave it a quick "
+"review!"
+msgstr ""
+
+#: includes/admin/views/html-notice-please-review.php:15
+msgid "Yes, take me there!"
+msgstr ""
+
+#: includes/admin/views/html-notice-please-review.php:15
+msgid "Already have :)"
+msgstr ""
+
+#: includes/admin/views/html-notice-requirement-wp.php:12
+#, php-format
+msgid ""
+"Sorry, <strong>%s</strong> requires WordPress %s or higher. Please upgrade "
+"your WordPress setup."
+msgstr ""
+
+#: includes/buddypress-welcome-email-functions.php:235
+msgid "Email Preview"
+msgstr ""
+
+#: includes/emails/class-buddypress-welcome-email-new-user.php:34
+msgid "New user account"
+msgstr ""
+
+#: includes/emails/class-buddypress-welcome-email-new-user.php:35
+msgid ""
+"New account emails are sent to the user when they sign up via the "
+"BuddyPress registration pages."
+msgstr ""
+
+#: includes/emails/class-buddypress-welcome-email-new-user.php:40
+#: includes/emails/class-buddypress-welcome-email-new-user.php:41
+msgid "Welcome to {site_title}"
+msgstr ""
+
+#: templates/email-footer.php:33
+#, php-format
+msgid "- %s"
+msgstr ""
+
+#: templates/new-user-account.php:16 templates/plain/new-user-account.php:16
+#, php-format
+msgid ""
+"Welcome to %s. We thank you for joining the site.<br><br>Your username is "
+"<strong>%s</strong>.<br>Your password is <strong>%s</strong>."
+msgstr ""
+
+#: templates/new-user-account.php:18 templates/plain/new-user-account.php:20
+msgid "Regards,"
+msgstr ""
+
+#: wp-update-php/wp-update-php.php:151
+#, php-format
+msgid ""
+"%s recommends a PHP version higher than %s. Read more information about <a "
+"href=\"%s\" target=\"_blank\">how you can update</a>."
+msgstr ""
+
+#: wp-update-php/wp-update-php.php:153
+#, php-format
+msgid ""
+"This plugin recommends a PHP version higher than %s. Read more information "
+"about <a href=\"%s\" target=\"_blank\">how you can update</a>."
+msgstr ""
+
+#: wp-update-php/wp-update-php.php:158
+#, php-format
+msgid ""
+"Unfortunately, %s cannot run on PHP versions older than %s. Read more "
+"information about <a href=\"%s\" target=\"_blank\">how you can update</a>."
+msgstr ""
+
+#: wp-update-php/wp-update-php.php:160
+#, php-format
+msgid ""
+"Unfortunately, this plugin cannot run on PHP versions older than %s. Read "
+"more information about <a href=\"%s\" target=\"_blank\">how you can update</"
+"a>."
+msgstr ""
