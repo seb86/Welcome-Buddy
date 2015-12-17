@@ -1,11 +1,11 @@
 <?php
 /**
-			 * WordPress Update PHP Class
-			 *
-			 * @package   WP_Update_Php
-			 * @author    Coen Jacobs, Sébastien Dumont
-			 * @license   GPL-2.0+
-			 */
+	 * WordPress Update PHP Class
+	 *
+	 * @package   WP_Update_Php
+	 * @author    Coen Jacobs, Sébastien Dumont
+	 * @license   GPL-2.0+
+	 */
 
 class WP_Update_Php {
 	/**

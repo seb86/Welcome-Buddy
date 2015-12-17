@@ -1,7 +1,7 @@
 <?php
 /**
-	 * View: Email Template Preview
-	 */
+ * View: Email Template Preview
+ */
 
 if ( ! defined('ABSPATH')) {
 	exit; // Exit if accessed directly

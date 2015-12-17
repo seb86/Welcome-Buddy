@@ -26,8 +26,8 @@ if ( ! defined('ABSPATH')) {
 			if (apply_filters('buddypress_email_show_header_image', true)) {
 			  echo '<div id="template_header_image">';
 			  echo '<p style="margin-top:0;margin-bottom:0;">';
-			  if (apply_filters('buddypress_email_link_header_image', true)) { echo '<a href="' . get_bloginfo('url') . '">'; }
-			  echo '<img src="' . esc_url(apply_filters('buddypress_email_header_image', NULL)) . '" alt="' . get_bloginfo('name', 'display') . '" />';
+			  if (apply_filters('buddypress_email_link_header_image', true)) { echo '<a href="'.get_bloginfo('url').'">'; }
+			  echo '<img src="'.esc_url(apply_filters('buddypress_email_header_image', NULL)).'" alt="'.get_bloginfo('name', 'display').'" />';
 			  if (apply_filters('buddypress_email_link_header_image', true)) { echo '</a>'; }
 			  echo '</p>';
 			  echo '</div>';

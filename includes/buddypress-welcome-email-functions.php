@@ -1,20 +1,20 @@
 <?php
 /**
- * Locate a template and return the path for inclusion.
- *
- * This is the load order:
- *
- *		yourtheme / $template_path / $template_name
- *		yourtheme / $template_name
- *		$default_path / $template_name
- *
- * @since  1.0.0
- * @access public
- * @param  string $template_name
- * @param  string $template_path (default: '')
- * @param  string $default_path (default: '')
- * @return string
- */
+			 * Locate a template and return the path for inclusion.
+			 *
+			 * This is the load order:
+			 *
+			 *		yourtheme / $template_path / $template_name
+			 *		yourtheme / $template_name
+			 *		$default_path / $template_name
+			 *
+			 * @since  1.0.0
+			 * @access public
+			 * @param  string $template_name
+			 * @param  string $template_path (default: '')
+			 * @param  string $default_path (default: '')
+			 * @return string
+			 */
 function bp_email_locate_template($template_name, $template_path = '', $default_path = '') {
 	if ( ! $template_path) {
 		$template_path = BP_WELCOME_EMAIL_TEMPLATE_PATH;
