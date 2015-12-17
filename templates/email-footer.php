@@ -3,7 +3,7 @@
  * Email Footer
  *
  * @author  Sébastien Dumont
- * @package BuddyPress Welcome Email/Templates/Emails
+ * @package BuddyPress Welcome Email/Templates
  * @version 1.0.0
  */
 

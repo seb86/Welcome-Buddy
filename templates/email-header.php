@@ -3,7 +3,7 @@
  * Email Header
  *
  * @author  Sébastien Dumont
- * @package BuddyPress Welcome Email/Templates/Emails
+ * @package BuddyPress Welcome Email/Templates
  * @version 1.0.0
  */
 
@@ -23,19 +23,20 @@ if ( ! defined('ABSPATH')) {
         <tr>
           <td align="center" valign="top">
             <?php
-			if (apply_filters('buddypress_email_show_header_image', true)) {
-			  echo '<div id="template_header_image">';
-			  echo '<p style="margin-top:0;margin-bottom:0;">';
-			  if (apply_filters('buddypress_email_link_header_image', true)) { echo '<a href="'.get_bloginfo('url').'">'; }
-			  echo '<img src="'.esc_url(apply_filters('buddypress_email_header_image', NULL)).'" alt="'.get_bloginfo('name', 'display').'" />';
-			  if (apply_filters('buddypress_email_link_header_image', true)) { echo '</a>'; }
-			  echo '</p>';
-			  echo '</div>';
-			}
-			?>
+            if (apply_filters('buddypress_email_show_header_image', true)) {
+              echo '<div id="template_header_image">';
+              echo '<p style="margin-top:0;margin-bottom:0;">';
+              if (apply_filters('buddypress_email_link_header_image', true)) { echo '<a href="'.get_bloginfo('url').'">'; }
+              echo '<img src="'.esc_url(apply_filters('buddypress_email_header_image', NULL)).'" alt="'.get_bloginfo('name', 'display').'" />';
+              if (apply_filters('buddypress_email_link_header_image', true)) { echo '</a>'; }
+              echo '</p>';
+              echo '</div>';
+            }
+            ?>
             <table border="0" cellpadding="0" cellspacing="0" width="600" id="template_container">
               <tr>
                 <td align="center" valign="top">
+                  <?php if ( ! empty($email_heading)) { ?>
                   <!-- Header -->
                   <table border="0" cellpadding="0" cellspacing="0" width="600" id="template_header">
                     <tr>
@@ -45,6 +46,7 @@ if ( ! defined('ABSPATH')) {
                     </tr>
                   </table>
                   <!-- End Header -->
+                  <?php } ?>
                 </td>
               </tr>
               <tr>

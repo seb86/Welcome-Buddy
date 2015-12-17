@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 $bg                 = apply_filters('buddypress_email_background_color', '#eeeeee');
 $body               = apply_filters('buddypress_email_body_background_color', '#fdfdfd');
 $body_text_colour   = apply_filters('buddypress_email_body_text_color', '#505050');
-$base               = apply_filters('buddypress_email_base_color', '#557da1');
+$base               = apply_filters('buddypress_email_base_color', '#c1403b');
 $base_text          = bp_light_or_dark($base, '#202020', '#ffffff');
 $text_colour        = apply_filters('buddypress_email_text_color', '#505050');
 $link_colour        = apply_filters('buddypress_email_link_color', '#214cce');
