@@ -1,11 +1,11 @@
 <?php
 /**
- * BuddyPress Welcome Email Class which handles the
+ * Welcome Buddy Class which handles the
  * sending on emails and email templates.
  *
  * @class    BP_Emails
  * @version  1.0.0
- * @package  BuddyPress Welcome Email/Classes/Emails
+ * @package  Welcome Buddy/Classes/Emails
  * @category Class
  * @author   Sébastien Dumont
  */
@@ -74,14 +74,14 @@ class BP_Emails {
 		$this->init();
 
 		// Email Header, Footer and content hooks
-		add_action('buddypress_email_header', array($this, 'email_header'));
-		add_action('buddypress_email_footer', array($this, 'email_footer'));
+		add_action('welcome_buddy_header', array($this, 'email_header'));
+		add_action('welcome_buddy_footer', array($this, 'email_footer'));
 
 		// Hooks for sending emails during events
 		add_action('bp_core_signup_user_notification', array($this, 'buddypress_new_user'), 10, 3);
 
 		// Let 3rd parties unhook the above via this hook
-		do_action('buddypress_email', $this);
+		do_action('welcome_buddy', $this);
 	} // END __construct()
 
 	/**
@@ -92,7 +92,7 @@ class BP_Emails {
 	 */
 	public function init() {
 		// Include email classes
-		include_once('emails/class-buddypress-welcome-email.php');
+		include_once('emails/class-welcome-buddy-email.php');
 
 		// Include CSS inliner
 		if ( ! class_exists('Emogrifier') && class_exists('DOMDocument')) {
@@ -167,11 +167,11 @@ class BP_Emails {
 		// Buffer
 		ob_start();
 
-		do_action('buddypress_email_header', $email_heading);
+		do_action('welcome_buddy_header', $email_heading);
 
 		echo wpautop(wptexturize($message));
 
-		do_action('buddypress_email_footer');
+		do_action('welcome_buddy_footer');
 
 		// Get contents
 		$message = ob_get_clean();
@@ -215,7 +215,7 @@ class BP_Emails {
 			return;
 		}
 
-		include('emails/class-buddypress-welcome-email-new-user.php');
+		include('emails/class-welcome-buddy-new-user.php');
 
 		$email = new BP_Email_New_User();
 		$email->trigger($user_id, $user_password);

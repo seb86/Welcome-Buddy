@@ -6,7 +6,7 @@
  *
  * @class       BP_Email_New_User
  * @version     1.0.0
- * @package     BuddyPress Welcome Email/Classes/Emails
+ * @package     Welcome Buddy/Classes/Emails
  * @author      Sébastien Dumont
  * @extends     BP_Email
  */
@@ -17,6 +17,8 @@ if ( ! defined('ABSPATH')) {
 if ( ! class_exists('BP_Email_New_User')) {
 
   class BP_Email_New_User extends BP_Email {
+
+    public $user_id;
 
     public $user_name;
 
@@ -31,14 +33,14 @@ if ( ! class_exists('BP_Email_New_User')) {
      */
     public function __construct() {
       $this->id = 'new_user_account';
-      $this->title = __('New user account', 'buddypress-welcome-email');
-      $this->description = __('New user account emails are sent to the user when they sign up via the BuddyPress registration page.', 'buddypress-welcome-email');
+      $this->title = __('New user account', 'welcome-buddy');
+      $this->description = __('New user account emails are sent to the user when they sign up via the BuddyPress registration page.', 'welcome-buddy');
 
       $this->template_html  = 'new-user-account.php';
       $this->template_plain = 'plain/new-user-account.php';
 
-      $this->subject = __('Welcome to {site_title}', 'buddypress-welcome-email');
-      $this->heading = __('Welcome to {site_title}', 'buddypress-welcome-email');
+      $this->subject = __('Welcome to {site_title}', 'welcome-buddy');
+      $this->heading = __('Welcome to {site_title}', 'welcome-buddy');
 
       // Call parent constuctor
       parent::__construct();
@@ -57,6 +59,7 @@ if ( ! class_exists('BP_Email_New_User')) {
       if ($user_id) {
         $this->object     = new WP_User($user_id);
 
+        $this->user_id    = $user_id;
         $this->user_pass  = $user_password;
         $this->user_name  = stripslashes($this->object->display_name);
         $this->user_login = stripslashes($this->object->user_login);
@@ -82,6 +85,7 @@ if ( ! class_exists('BP_Email_New_User')) {
       ob_start();
       bp_email_get_template($this->template_html, array(
         'email_heading' => $this->get_heading(),
+        'user_id'       => $this->user_id,
         'user_name'     => $this->user_name,
         'user_login'    => $this->user_login,
         'user_pass'     => $this->user_pass,

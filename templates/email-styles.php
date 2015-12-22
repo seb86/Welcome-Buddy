@@ -3,7 +3,7 @@
  * Email Styles
  *
  * @author  Sébastien Dumont
- * @package BuddyPress Welcome Email/Templates
+ * @package Welcome Buddy/Templates
  * @version 1.0.0
  */
 
@@ -13,15 +13,15 @@ if ( ! defined('ABSPATH')) {
 // Exit if accessed directly
 
 // Load colours
-$bg                 = apply_filters('buddypress_email_background_color', '#eeeeee');
-$body               = apply_filters('buddypress_email_body_background_color', '#fdfdfd');
-$body_text_colour   = apply_filters('buddypress_email_body_text_color', '#505050');
-$base               = apply_filters('buddypress_email_base_color', '#c1403b');
+$bg                 = apply_filters('welcome_buddy_background_color', '#eeeeee');
+$body               = apply_filters('welcome_buddy_body_background_color', '#fdfdfd');
+$body_text_colour   = apply_filters('welcome_buddy_body_text_color', '#505050');
+$base               = apply_filters('welcome_buddy_base_color', '#c1403b');
 $base_text          = bp_light_or_dark($base, '#202020', '#ffffff');
-$text_colour        = apply_filters('buddypress_email_text_color', '#505050');
-$link_colour        = apply_filters('buddypress_email_link_color', '#214cce');
-$header_text_colour = apply_filters('buddypress_email_header_text_color', '#ffffff');
-$footer_text_colour = apply_filters('buddypress_email_footer_text_color', '#202020');
+$text_colour        = apply_filters('welcome_buddy_text_color', '#505050');
+$link_colour        = apply_filters('welcome_buddy_link_color', '#214cce');
+$header_text_colour = apply_filters('welcome_buddy_header_text_color', '#ffffff');
+$footer_text_colour = apply_filters('welcome_buddy_footer_text_color', '#202020');
 
 $bg_darker_10    = bp_hex_darker($bg, 10);
 $body_darker_10  = bp_hex_darker($body, 10);
@@ -30,11 +30,11 @@ $base_lighter_40 = bp_hex_lighter($base, 40);
 $text_lighter_20 = bp_hex_lighter($text_colour, 20);
 
 // Appearance
-$header_font_size         = apply_filters('buddypress_email_header_font_size', '30');
-$footer_font_size         = apply_filters('buddypress_email_footer_font_size', '12');
-$template_rounded_corners = apply_filters('buddypress_email_rounded_corners', '6');
-$template_shadow          = apply_filters('buddypress_email_box_shadow_spread', '1');
-$template_width           = apply_filters('buddypress_email_width', '600');
+$header_font_size         = apply_filters('welcome_buddy_header_font_size', '30');
+$footer_font_size         = apply_filters('welcome_buddy_footer_font_size', '12');
+$template_rounded_corners = apply_filters('welcome_buddy_rounded_corners', '6');
+$template_shadow          = apply_filters('welcome_buddy_box_shadow_spread', '1');
+$template_width           = apply_filters('welcome_buddy_width', '600');
 // !important; is a gmail hack to prevent styles being stripped if it doesn't like something.
 ?>
 #wrapper {

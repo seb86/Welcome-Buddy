@@ -3,7 +3,7 @@
  * Email Footer
  *
  * @author  Sébastien Dumont
- * @package BuddyPress Welcome Email/Templates
+ * @package Welcome Buddy/Templates
  * @version 1.0.0
  */
 
@@ -30,7 +30,7 @@ if ( ! defined('ABSPATH')) {
                       <td valign="top">
                         <table border="0" cellpadding="10" cellspacing="0" width="100%">
                           <tr>
-                            <td colspan="2" valign="middle" id="credit"><?php echo wpautop(wp_kses_post(wptexturize(apply_filters('buddypress_welcome_email_footer_text', sprintf(__('- %s', 'buddypress-welcome-email'), wp_specialchars_decode(get_option('blogname'), ENT_QUOTES)))))); ?></td>
+                            <td colspan="2" valign="middle" id="credit"><?php echo wpautop(wp_kses_post(wptexturize(apply_filters('welcome_buddy_footer_text', sprintf(__('- %s', 'welcome-buddy'), wp_specialchars_decode(get_option('blogname'), ENT_QUOTES)))))); ?></td>
                           </tr>
                         </table>
                       </td>

@@ -5,7 +5,7 @@
 	 * @since    1.0.0
 	 * @author   Sébastien Dumont
 	 * @category Admin
-	 * @package  BuddyPress Welcome Email
+	 * @package  Welcome Buddy
 	 * @license  GPL-2.0+
 	 */
 
@@ -14,14 +14,14 @@ if ( ! defined('ABSPATH')) {
 }
 // Exit if accessed directly
 
-if ( ! class_exists('BuddyPress_Welcome_Email_Admin_Notices')) {
+if ( ! class_exists('Welcome_Buddy_Admin_Notices')) {
 
 /**
- * Class - BuddyPress_Welcome_Email_Admin_Notices
+ * Class - Welcome_Buddy_Admin_Notices
  *
  * @since 1.0.0
  */
-class BuddyPress_Welcome_Email_Admin_Notices {
+class Welcome_Buddy_Admin_Notices {
 
 	/**
 	 * Constructor
@@ -45,13 +45,13 @@ class BuddyPress_Welcome_Email_Admin_Notices {
 	public function add_notices() {
 		global $current_user;
 
-		if ( ! empty($_GET['hide_buddypress_welcome_email_review_notice']) && current_user_can('install_plugins')) {
+		if ( ! empty($_GET['hide_welcome_buddy_review_notice']) && current_user_can('install_plugins')) {
 			// Add user meta
-			add_user_meta($current_user->ID, 'buddypress_welcome_email_hide_review_notice', '1', true);
+			add_user_meta($current_user->ID, 'welcome_buddy_hide_review_notice', '1', true);
 		}
 
 		// Is admin notice hidden?
-		$hide_notice = get_user_meta($current_user->ID, 'buddypress_welcome_email_hide_review_notice', true);
+		$hide_notice = get_user_meta($current_user->ID, 'welcome_buddy_hide_review_notice', true);
 
 		// Check if we need to display the review plugin notice
 		if (current_user_can('install_plugins') && empty($hide_notice)) {
@@ -77,7 +77,7 @@ class BuddyPress_Welcome_Email_Admin_Notices {
 	public function check_wp() {
 		global $wp_version;
 
-		if ( ! version_compare($wp_version, BP_WELCOME_EMAIL_WP_VERSION_REQUIRE, '>=')) {
+		if ( ! version_compare($wp_version, WELCOME_BUDDY_WP_VERSION_REQUIRE, '>=')) {
 			add_action('admin_notices', array($this, 'requirement_wp_notice'));
 			return false;
 		}
@@ -93,7 +93,7 @@ class BuddyPress_Welcome_Email_Admin_Notices {
 	 * @return DateTime
 	 */
 	private function get_install_date() {
-		$date_string = get_site_option('buddypress_welcome_email_install_date', '');
+		$date_string = get_site_option('welcome_buddy_install_date', '');
 		if (empty($date_string)) {
 			// There is no install date. Add it now.
 			$date_string = $this->insert_install_date();
@@ -113,7 +113,7 @@ class BuddyPress_Welcome_Email_Admin_Notices {
 		$datetime_now = new DateTime();
 		$date_string  = $datetime_now->format('Y-m-d');
 
-		add_site_option('buddypress_welcome_email_install_date', $date_string, '', 'no');
+		add_site_option('welcome_buddy_install_date', $date_string, '', 'no');
 
 		return $date_string;
 	}
@@ -138,8 +138,8 @@ class BuddyPress_Welcome_Email_Admin_Notices {
 		include('views/html-notice-please-review.php');
 	} // END plugin_review_notice()
 
-} // END BuddyPress_Welcome_Email_Admin_Notices class.
+} // END Welcome_Buddy_Admin_Notices class.
 
 } // END if class exists.
 
-return new BuddyPress_Welcome_Email_Admin_Notices();
+return new Welcome_Buddy_Admin_Notices();
