@@ -1,4 +1,4 @@
-﻿===Welcome Buddy ===
+﻿=== Welcome Buddy ===
 Contributors:      sebd86
 Donate link:       https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=mailme@sebastiendumont.com&currency_code=&amount=&return=&item_name=Buy+me+a+coffee+for+an+awesome+WordPress+plugin
 Tags:              buddypress, buddypress notification, new user, user registration email, email, notification, html email, plain email, welcome email

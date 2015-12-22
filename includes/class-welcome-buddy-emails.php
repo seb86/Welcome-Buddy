@@ -215,7 +215,7 @@ class BP_Emails {
 			return;
 		}
 
-		include('emails/class-welcome-buddy-new-user.php');
+		include('emails/class-welcome-buddy-email-new-user.php');
 
 		$email = new BP_Email_New_User();
 		$email->trigger($user_id, $user_password);
