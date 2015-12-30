@@ -23,6 +23,9 @@ You may also find that a topic similar to yours has already been posted so join 
 
 If you spot a bug within the plugin, you can of course log it as an [issue](https://github.com/seb86/Welcome-Buddy/issues) on Github where I can act upon it more efficiently.
 
+= Documentation =
+See [documentation](https://github.com/seb86/Welcome-Buddy/wiki) on the GitHub repository.
+
 = Leave a Review =
 Reviews are helpful to other users and this plugin reputation. Please consider spending a minute or two leaving a [review](https://wordpress.org/support/view/plugin-reviews/welcome-buddy?rate=5#postform) and tell me what you think about the plugin. It matters a lot and is most appreciated.
 
@@ -35,7 +38,7 @@ Reviews are helpful to other users and this plugin reputation. Please consider s
 
 - Other [WordPress plugins](http://profiles.wordpress.org/sebd86/) by [Sébastien Dumont](http://www.sebastiendumont.com/)
 - Contact Sébastien on Twitter: [@sebd86](http://twitter.com/sebd86)
-- If you're a developer yourself, follow or contribute to the [Welcome Buddy plugin on GitHub](https://github.com/seb86/welcome-buddy)
+- If you're a developer yourself, follow or contribute to the [Welcome Buddy plugin on GitHub](https://github.com/seb86/Welcome-Buddy)
 
 == Installation ==
 Installing "Welcome Buddy" can be done either by searching for "Welcome Buddy" via the "Plugins > Add New" screen in your WordPress dashboard, or by using the following steps:
@@ -44,14 +47,16 @@ Installing "Welcome Buddy" can be done either by searching for "Welcome Buddy" v
 2. Upload the ZIP file through the 'Plugins > Add New > Upload' screen in your WordPress dashboard.
 3. Activate the plugin through the 'Plugins' menu in WordPress.
 
-See [documentation](https://github.com/seb86/Welcome-Buddy/wiki) for more information.
-
 == Screenshots ==
-1. Email Preview in HTML
+1. Email in HTML
+2. Email in Plain Text
 
 == Changelog ==
 
-= 1.0.0 : 23rd December 2015 =
+= 1.0.0 : 31st December 2015 =
 * Initial version
 
 == Upgrade Notice ==
+
+= 1.0.0 : 31st December 2015 =
+* Initial version
