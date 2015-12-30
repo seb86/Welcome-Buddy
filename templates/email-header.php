@@ -3,7 +3,7 @@
  * Email Header
  *
  * @author  Sébastien Dumont
- * @package BuddyPress Welcome Email/Templates
+ * @package Welcome Buddy/Templates
  * @version 1.0.0
  */
 
@@ -23,12 +23,12 @@ if ( ! defined('ABSPATH')) {
         <tr>
           <td align="center" valign="top">
             <?php
-            if (apply_filters('buddypress_email_show_header_image', true)) {
+            if (apply_filters('welcome_buddy_show_header_image', true)) {
               echo '<div id="template_header_image">';
               echo '<p style="margin-top:0;margin-bottom:0;">';
-              if (apply_filters('buddypress_email_link_header_image', true)) { echo '<a href="'.get_bloginfo('url').'">'; }
-              echo '<img src="'.esc_url(apply_filters('buddypress_email_header_image', NULL)).'" alt="'.get_bloginfo('name', 'display').'" />';
-              if (apply_filters('buddypress_email_link_header_image', true)) { echo '</a>'; }
+              if (apply_filters('welcome_buddy_link_header_image', true)) { echo '<a href="'.get_bloginfo('url').'">'; }
+              echo '<img src="'.esc_url(apply_filters('welcome_buddy_header_image', NULL)).'" alt="'.get_bloginfo('name', 'display').'" />';
+              if (apply_filters('welcome_buddy_link_header_image', true)) { echo '</a>'; }
               echo '</p>';
               echo '</div>';
             }
@@ -58,5 +58,5 @@ if ( ! defined('ABSPATH')) {
                       <!-- Content -->
                       <table border="0" cellpadding="20" cellspacing="0" width="100%">
                         <tr>
-                          <td valign="top">
+                          <td valign="top" colspan="2">
                             <div id="body_content_inner">

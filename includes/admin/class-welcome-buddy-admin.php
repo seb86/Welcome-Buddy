@@ -1,11 +1,11 @@
 <?php
 /**
- * BuddyPress Welcome Email Admin.
+ * Welcome Buddy Admin.
  *
  * @since    1.0.0
  * @author   Sébastien Dumont
  * @category Admin
- * @package  BuddyPress Welcome Email
+ * @package  Welcome Buddy
  * @license  GPL-2.0+
  */
 
@@ -14,14 +14,14 @@ if ( ! defined('ABSPATH')) {
 }
 // Exit if accessed directly
 
-if ( ! class_exists('BuddyPress_Welcome_Email_Admin')) {
+if ( ! class_exists('Welcome_Buddy_Admin')) {
 
 /**
- * Class - BuddyPress_Welcome_Email_Admin
+ * Class - Welcome_Buddy_Admin
  *
  * @since 1.0.0
  */
-class BuddyPress_Welcome_Email_Admin {
+class Welcome_Buddy_Admin {
 
 	/**
 	 * Constructor
@@ -47,12 +47,13 @@ class BuddyPress_Welcome_Email_Admin {
 	 * @return array  $input
 	 */
 	public function plugin_row_meta($input, $file) {
-		if (plugin_basename(BP_WELCOME_EMAIL_FILE) !== $file) {
+		if (plugin_basename(WELCOME_BUDDY_FILE) !== $file) {
 			return $input;
 		}
 
 		$links = array(
-			'<a href="'.wp_nonce_url(site_url('?preview_bp_email=true'), 'preview-email').'" target="_blank">'.__('Preview Email', 'buddypress-welcome-email').'</a>',
+			'<a href="'.wp_nonce_url(site_url('?preview_bp_email=true'), 'preview-email').'" target="_blank">'.__('Preview Email', 'welcome-buddy').'</a>',
+			'<a href="'.wp_nonce_url(site_url('?send_bp_test_email=true'), 'send-test-email').'" target="_blank">'.__('Send Test Email', 'welcome-buddy').'</a>',
 		);
 
 		$input = array_merge($input, $links);
@@ -67,11 +68,11 @@ class BuddyPress_Welcome_Email_Admin {
 	 * @access public
 	 */
 	public function includes() {
-		include('class-buddypress-welcome-email-admin-notices.php'); // Plugin Notices
+		include('class-welcome-buddy-admin-notices.php'); // Plugin Notices
 	} // END includes()
 
 } // END class
 
 } // END if class exists
 
-return new BuddyPress_Welcome_Email_Admin();
+return new Welcome_Buddy_Admin();

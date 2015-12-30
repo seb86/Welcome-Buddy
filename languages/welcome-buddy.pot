@@ -1,13 +1,12 @@
-# Auto Load Next Post Copyright (c) {2014}
+# Welcome Buddy Copyright (c) {2015}
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: BuddyPress Welcome Email 1.0.0\n"
-"Report-Msgid-Bugs-To: https://github.com/seb86/WordPress-Plugin-Boilerplate/"
-"issues\n"
-"POT-Creation-Date: 2015-12-17 14:59+0100\n"
+"Project-Id-Version: Welcome Buddy 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/seb86/Welcome-Buddy/issues\n"
+"POT-Creation-Date: 2015-12-30 20:01+0100\n"
 "PO-Revision-Date: 2015-05-20 17:15+0100\n"
-"Last-Translator: Auto Load Next Post <mailme@sebastiendumont.com>\n"
+"Last-Translator: Welcome Buddy <mailme@sebastiendumont.com>\n"
 "Language-Team: WP-Translations <wpt@wp-translations.org>\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
@@ -22,12 +21,12 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: buddypress-welcome-email.php:93 buddypress-welcome-email.php:105
-msgid "Cheatin’ huh?"
+#: includes/admin/class-welcome-buddy-admin.php:55
+msgid "Preview Email"
 msgstr ""
 
-#: includes/admin/class-buddypress-welcome-email-admin.php:55
-msgid "Preview Email"
+#: includes/admin/class-welcome-buddy-admin.php:56
+msgid "Send Test Email"
 msgstr ""
 
 #: includes/admin/views/html-notice-please-review.php:14
@@ -53,23 +52,36 @@ msgid ""
 "your WordPress setup."
 msgstr ""
 
-#: includes/buddypress-welcome-email-functions.php:234
-msgid "Email Preview"
-msgstr ""
-
-#: includes/emails/class-buddypress-welcome-email-new-user.php:34
+#: includes/emails/class-welcome-buddy-email-new-user.php:36
 msgid "New user account"
 msgstr ""
 
-#: includes/emails/class-buddypress-welcome-email-new-user.php:35
+#: includes/emails/class-welcome-buddy-email-new-user.php:37
 msgid ""
 "New user account emails are sent to the user when they sign up via the "
 "BuddyPress registration page."
 msgstr ""
 
-#: includes/emails/class-buddypress-welcome-email-new-user.php:40
-#: includes/emails/class-buddypress-welcome-email-new-user.php:41
+#: includes/emails/class-welcome-buddy-email-new-user.php:42
+#: includes/emails/class-welcome-buddy-email-new-user.php:43
 msgid "Welcome to {site_title}"
+msgstr ""
+
+#: includes/welcome-buddy-functions.php:234
+#: includes/welcome-buddy-functions.php:276
+msgid "Email Preview"
+msgstr ""
+
+#: includes/welcome-buddy-functions.php:289
+msgid "Test Email"
+msgstr ""
+
+#: includes/welcome-buddy-functions.php:292
+msgid "Test email was sent"
+msgstr ""
+
+#: includes/welcome-buddy-functions.php:294
+msgid "Test email was not sent"
 msgstr ""
 
 #: templates/email-footer.php:33
@@ -77,7 +89,7 @@ msgstr ""
 msgid "- %s"
 msgstr ""
 
-#: templates/new-user-account.php:17
+#: templates/new-user-account.php:17 templates/plain/new-user-account.php:16
 #, php-format
 msgid "Welcome to %s. We thank you for joining the site."
 msgstr ""
@@ -92,15 +104,22 @@ msgstr ""
 msgid "Your password is <strong>%s</strong>."
 msgstr ""
 
-#: templates/new-user-account.php:23 templates/plain/new-user-account.php:20
+#: templates/new-user-account.php:23 templates/plain/new-user-account.php:26
 msgid "Regards,"
 msgstr ""
 
-#: templates/plain/new-user-account.php:16
+#: templates/plain/new-user-account.php:20
 #, php-format
-msgid ""
-"Welcome to %s. We thank you for joining the site.<br><br>Your username is "
-"<strong>%s</strong>.<br>Your password is <strong>%s</strong>."
+msgid "Your username is %s."
+msgstr ""
+
+#: templates/plain/new-user-account.php:22
+#, php-format
+msgid "Your password is %s."
+msgstr ""
+
+#: welcome-buddy.php:93 welcome-buddy.php:105
+msgid "Cheatin’ huh?"
 msgstr ""
 
 #: wp-update-php/wp-update-php.php:151

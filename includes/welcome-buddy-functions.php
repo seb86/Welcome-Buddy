@@ -17,11 +17,11 @@
  */
 function bp_email_locate_template($template_name, $template_path = '', $default_path = '') {
 	if ( ! $template_path) {
-		$template_path = BP_WELCOME_EMAIL_TEMPLATE_PATH;
+		$template_path = WELCOME_BUDDY_TEMPLATE_PATH;
 	}
 
 	if ( ! $default_path) {
-		$default_path = BP_WELCOME_EMAIL_FILE_PATH.'/templates/';
+		$default_path = WELCOME_BUDDY_FILE_PATH.'/templates/';
 	}
 
 	// Look within passed path within the theme - this is priority
@@ -38,7 +38,7 @@ function bp_email_locate_template($template_name, $template_path = '', $default_
 	}
 
 	// Return what we found
-	return apply_filters('buddypress_email_locate_template', $template, $template_name, $template_path);
+	return apply_filters('welcome_buddy_locate_template', $template, $template_name, $template_path);
 } // END bp_email_locate_template()
 
 /**
@@ -59,18 +59,18 @@ function bp_email_get_template($template_name, $args = array(), $template_path =
 	$located = bp_email_locate_template($template_name, $template_path, $default_path);
 
 	if ( ! file_exists($located)) {
-		_doing_it_wrong(__FUNCTION__, sprintf('<code>%s</code> does not exist.', $located), BP_WELCOME_EMAIL_VERSION);
+		_doing_it_wrong(__FUNCTION__, sprintf('<code>%s</code> does not exist.', $located), WELCOME_BUDDY_VERSION);
 		return;
 	}
 
 	// Allow 3rd party plugin filter template file from their plugin
-	$located = apply_filters('buddypress_email_get_template', $located, $template_name, $args, $template_path, $default_path);
+	$located = apply_filters('welcome_buddy_get_template', $located, $template_name, $args, $template_path, $default_path);
 
-	do_action('buddypress_email_before_template_part', $template_name, $template_path, $located, $args);
+	do_action('welcome_buddy_before_template_part', $template_name, $template_path, $located, $args);
 
 	include($located);
 
-	do_action('buddypress_email_after_template_part', $template_name, $template_path, $located, $args);
+	do_action('welcome_buddy_after_template_part', $template_name, $template_path, $located, $args);
 } // END bp_email_get_template()
 
 if ( ! function_exists('bp_rgb_from_hex')) {
@@ -212,7 +212,7 @@ if ( ! function_exists('bp_format_hex')) {
  * @param string $attachments (default: "")
  */
 function bp_mail($to, $subject, $message, $headers = "Content-Type: text/html\r\n", $attachments = "") {
-	$mailer = BuddyPress_Welcome_Email::mailer();
+	$mailer = Welcome_Buddy::mailer();
 
 	$mailer->send($to, $subject, $message, $headers, $attachments);
 } // END bp_mail()
@@ -229,9 +229,9 @@ function bp_preview_email() {
 		}
 
 		// Load the mailer class
-		$mailer = BuddyPress_Welcome_Email::mailer();
+		$mailer = Welcome_Buddy::mailer();
 
-		$email_heading = __('Email Preview', 'buddypress-welcome-email');
+		$email_heading = __('Email Preview', 'welcome-buddy');
 
 		// Get the preview email content
 		ob_start();
@@ -252,3 +252,49 @@ function bp_preview_email() {
 	}
 }
 add_action('init', 'bp_preview_email');
+
+/**
+ * Sends a test email
+ *
+ * @since 1.0.0
+ */
+function bp_send_test_email() {
+	if (isset($_GET['send_bp_test_email'])) {
+		if ( ! wp_verify_nonce($_REQUEST['_wpnonce'], 'send-test-email')) {
+			wp_die('Security check');
+		}
+
+		// Get current user
+		$current_user = wp_get_current_user();
+
+		// Send test email to current user
+		$send_to = $current_user->user_email;
+
+		// Load the mailer class
+		$mailer = Welcome_Buddy::mailer();
+
+		$email_heading = __('Email Preview', 'welcome-buddy');
+
+		ob_start();
+
+		include_once('views/html-email-template-preview.php');
+
+		$message = ob_get_clean();
+
+		$email = new BP_Email();
+
+		// Wrap the content with the email template and then add styles
+		$message = $email->style_inline($mailer->wrap_message($email_heading, $message));
+
+		$subject = wp_specialchars_decode(get_bloginfo('name'), ENT_QUOTES).' '.__('Test Email', 'welcome-buddy');
+
+		if ($email->send($send_to, $subject, $message)) {
+			_e('Test email was sent', 'welcome-buddy');
+		} else {
+			_e('Test email was not sent', 'welcome-buddy');
+		}
+
+		exit;
+	}
+}
+add_action('init', 'bp_send_test_email');

@@ -1,11 +1,11 @@
 <?php
 /**
- * BuddyPress Welcome Email Class which is extended by specific email
+ * Welcome Buddy Class which is extended by specific email
  * template classes to add emails to BuddyPress.
  *
  * @class       BP_Welcome_Email
  * @version     1.0.0
- * @package     BuddyPress Welcome Email/Classes/Emails
+ * @package     Welcome Buddy/Classes/Emails
  * @author      Sébastien Dumont
  * @extends     BP_Email
  */
@@ -210,13 +210,13 @@ class BP_Email extends BP_Emails {
 	public function __construct() {
 		// Default template base if not declared in child constructor
 		if (is_null($this->template_base)) {
-			$this->template_base = BP_WELCOME_EMAIL_FILE_PATH.'/templates/';
+			$this->template_base = WELCOME_BUDDY_FILE_PATH.'/templates/';
 		}
 
 		// Settings
 		$this->heading     = $this->heading;
 		$this->subject     = $this->subject;
-		$this->email_type  = apply_filters('buddypress_email_type', 'html');
+		$this->email_type  = apply_filters('welcome_buddy_type', 'html');
 		$this->enabled     = 'yes';
 
 		// Find/replace
@@ -235,7 +235,7 @@ class BP_Email extends BP_Emails {
 	 * @return string
 	 */
 	public function format_string($string) {
-		return str_replace(apply_filters('buddypress_email_format_string_find', $this->find, $this), apply_filters('buddypress_email_format_string_replace', $this->replace, $this), $string);
+		return str_replace(apply_filters('welcome_buddy_format_string_find', $this->find, $this), apply_filters('welcome_buddy_format_string_replace', $this->replace, $this), $string);
 	} // END format_string()
 
 	/**
@@ -246,7 +246,7 @@ class BP_Email extends BP_Emails {
 	 * @return string
 	 */
 	public function get_subject() {
-		return apply_filters('buddypress_email_subject_'.$this->id, $this->format_string($this->subject), $this->object);
+		return apply_filters('welcome_buddy_subject_'.$this->id, $this->format_string($this->subject), $this->object);
 	} // END get_subject()
 
 	/**
@@ -257,7 +257,7 @@ class BP_Email extends BP_Emails {
 	 * @return string
 	 */
 	public function get_heading() {
-		return apply_filters('buddypress_email_heading_'.$this->id, $this->format_string($this->heading), $this->object);
+		return apply_filters('welcome_buddy_heading_'.$this->id, $this->format_string($this->heading), $this->object);
 	} // END get_heading()
 
 	/**
@@ -268,7 +268,7 @@ class BP_Email extends BP_Emails {
 	 * @return string
 	 */
 	public function get_recipient() {
-		return apply_filters('buddypress_email_recipient_'.$this->id, $this->recipient, $this->object);
+		return apply_filters('welcome_buddy_recipient_'.$this->id, $this->recipient, $this->object);
 	} // END get_recipient()
 
 	/**
@@ -279,7 +279,7 @@ class BP_Email extends BP_Emails {
 	 * @return string
 	 */
 	public function get_headers() {
-		return apply_filters('buddypress_email_headers', "Content-Type: ".$this->get_content_type()."\r\n", $this->id, $this->object);
+		return apply_filters('welcome_buddy_headers', "Content-Type: ".$this->get_content_type()."\r\n", $this->id, $this->object);
 	} // END get_headers()
 
 	/**
@@ -290,7 +290,7 @@ class BP_Email extends BP_Emails {
 	 * @return string|array
 	 */
 	public function get_attachments() {
-		return apply_filters('buddypress_email_attachments', array(), $this->id, $this->object);
+		return apply_filters('welcome_buddy_attachments', array(), $this->id, $this->object);
 	} // END get_attachments()
 
 	/**
@@ -332,7 +332,7 @@ class BP_Email extends BP_Emails {
 	public function is_enabled() {
 		$enabled = $this->enabled == 'yes' ? true : false;
 
-		return apply_filters('buddypress_email_enabled_'.$this->id, $enabled, $this->object);
+		return apply_filters('welcome_buddy_enabled_'.$this->id, $enabled, $this->object);
 	} // END is_enabled()
 
 	/**
@@ -378,7 +378,7 @@ class BP_Email extends BP_Emails {
 			// Get CSS styles
 			ob_start();
 			bp_email_get_template('email-styles.php');
-			$css = apply_filters('buddypress_email_styles', ob_get_clean());
+			$css = apply_filters('welcome_buddy_styles', ob_get_clean());
 
 			// Apply CSS styles inline for picky email clients.
 			$emogrifier = new Emogrifier($content, $css);
@@ -414,7 +414,7 @@ class BP_Email extends BP_Emails {
 	 * @return string
 	 */
 	public function get_from_name() {
-		return wp_specialchars_decode(esc_html(apply_filters('buddypress_email_from_name', $this->get_blogname())), ENT_QUOTES);
+		return wp_specialchars_decode(esc_html(apply_filters('welcome_buddy_from_name', $this->get_blogname())), ENT_QUOTES);
 	} // END get_from_name()
 
 	/**
@@ -425,7 +425,7 @@ class BP_Email extends BP_Emails {
 	 * @return string
 	 */
 	public function get_from_address() {
-		return sanitize_email(apply_filters('buddypress_email_from_address', $this->get_admin_email()));
+		return sanitize_email(apply_filters('welcome_buddy_from_address', $this->get_admin_email()));
 	} // END get_from_address()
 
 	/**
@@ -456,7 +456,7 @@ class BP_Email extends BP_Emails {
 		add_filter('wp_mail_from_name', array($this, 'get_from_name'));
 		add_filter('wp_mail_content_type', array($this, 'get_content_type'));
 
-		$message = apply_filters('buddypress_welcome_email_content', $this->style_inline($message));
+		$message = apply_filters('welcome_buddy_content', $this->style_inline($message));
 		$return  = wp_mail($to, $subject, $message, $headers, $attachments);
 
 		remove_filter('wp_mail_from', array($this, 'get_from_address'));

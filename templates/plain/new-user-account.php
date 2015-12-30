@@ -3,7 +3,7 @@
  * Welcome email for new registered users.
  *
  * @author  Sébastien Dumont
- * @package BuddyPress Welcome Email/Templates/Plain
+ * @package Welcome Buddy/Templates/Plain
  * @version 1.0.0
  */
 
@@ -13,8 +13,20 @@ if ( ! defined('ABSPATH')) {
 
 echo "= ".$email_heading." =\n\n";
 
-echo apply_filters('buddypress_welcome_email_text', sprintf(__("Welcome to %s. We thank you for joining the site.<br><br>Your username is <strong>%s</strong>.<br>Your password is <strong>%s</strong>.", 'buddypress-welcome-email'), $blogname, $user_login, $user_pass))."\n\n";
+echo sprintf(__("Welcome to %s. We thank you for joining the site.", 'welcome-buddy'), $blogname)."\n";
 
-echo "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
+echo "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
 
-echo apply_filters('buddypress_welcome_email_footer_text', __('Regards,', 'buddypress-welcome-email')."\n".$blogname."\n");
+echo sprintf(__('Your username is %s.', 'welcome-buddy'), $user_login)."\n\n";
+
+echo sprintf(__('Your password is %s.', 'welcome-buddy'), $user_pass)."\n";
+
+echo "\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n";
+
+_e('Regards,', 'welcome-buddy');
+
+echo "\n".$blogname."\n";
+
+$blogurl = get_bloginfo('url');
+
+echo '<a href="'.$blogurl.'">'.$blogurl.'</a>';
